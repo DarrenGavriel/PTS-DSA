@@ -94,6 +94,18 @@ public class LinkedList {
 				hapus=null;
 		}
 		
+		public void cariPenyanyi(String data) {
+			System.out.printf(data);
+			System.out.println("\n");
+			Node temp=head;
+			while(temp!=null) {
+				if(temp.getPenyanyi()==data || temp.getJudul()==data) {
+					temp.cetak();
+				}
+				temp=temp.getNext();
+			}
+		}
+		
 		public void cetakList() {
 			Node temp=head;
 			while(temp!=null) {
