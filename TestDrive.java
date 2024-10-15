@@ -16,7 +16,9 @@ public class TestDrive {
 			
 			ll.addMid("Melted", new Node("Nxde","G-Idle",250,null,null));
 			ll.addMid("Roly Poly", new Node("In The End","Linkin Park",450,null,null));
-			ll.addMid("Bohemian Rhapsody", new Node("MAGO","G-Friend",200,null,null));
+			ll.addMid("In The End", new Node("Dinosaur","AKMU",200,null,null));
+			ll.addMid("Nxde", new Node("Night Changes","One Direction",200,null,null));
+			ll.addMid("Bohemian Rhapsody", new Node("Give Love","AKMU",200,null,null));
 			
 			System.out.println("\n\nList Tambah Tengah:");
 			ll.cetakList();
@@ -24,21 +26,26 @@ public class TestDrive {
 			System.out.println("\n\nCETAK BELAKANG:");
 			ll.cetakBelakang();
 			
-			System.out.println("\n\nList Hapus Head:");
-			ll.removeHead();
-			ll.cetakList();
+//			System.out.println("\n\nList Hapus Head:");
+//			ll.removeHead();
+//			ll.cetakList();
+//			
+//			System.out.println("\n\nList Hapus Tail:");
+//			ll.removeTail();
+//			ll.cetakList();
+//			
+//			System.out.println("\n\nList Hapus Tengah:");
+//			ll.removeMid("MAGO");
+//			ll.cetakList();
+//			
+//			System.out.println("\n\nList setelah hapus tengah:");
+//			ll.cetakBelakang();
 			
-			System.out.println("\n\nList Hapus Tail:");
-			ll.removeTail();
-			ll.cetakList();
+			System.out.println("\n\nMencari penyanyi: ");
+			ll.cariPenyanyi("AKMU");
+			System.out.println("\n");
 			
-			System.out.println("\n\nList Hapus Tengah:");
-			ll.removeMid("MAGO");
-			ll.cetakList();
-			
-			System.out.println("\n\nList setelah hapus tengah:");
-			ll.cetakBelakang();
-			
+			ll.cariPenyanyi("Nxde");
 			
 		}
 }
