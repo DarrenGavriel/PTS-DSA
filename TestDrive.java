@@ -33,7 +33,7 @@ public class TestDrive {
 			ll.cetakList();
 			
 			System.out.println("\n\nList Hapus Tengah:");
-			ll.removeMid("Rewrite The Stars");
+			ll.removeMid("MAGO");
 			ll.cetakList();
 			
 			System.out.println("\n\nList setelah hapus tengah:");
