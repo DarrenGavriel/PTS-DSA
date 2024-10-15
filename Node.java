@@ -1,8 +1,14 @@
 public class Node {
-	private Node next;
+	private Node next, prev;
 	private Data data;
-	public Node(Data d, Node n) {
+	public Node() {
+		data = null;
+		next = null;
+		prev = null;
+	}
+	public Node(Data d, Node n, Node p) {
 		next = n;
+		prev = p;
 		data = d;
 	}
 	public void setNext(Node n) {
@@ -10,6 +16,12 @@ public class Node {
 	}
 	public Node getNext() {
 		return next;
+	}
+	public void setPrev(Node p) {
+		prev = p;
+	}
+	public Node getPrev() {
+		return prev;
 	}
 	public void setData(Data d) {
 		data = d;
