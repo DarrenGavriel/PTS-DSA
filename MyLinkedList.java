@@ -1,113 +1,102 @@
-public class MyLinkedList {
-	private Node head, tail;
-	public void add(Node baru){
-        if(head==null){
-            head=baru;
-            tail=baru;
-        }
-        else{
-            baru.setNext(head);
-            head.setPrev(baru);
-            head=baru;
+public class MyLinkedList{
+    Node head, tail;
+
+    public MyLinkedList(){
+        head = null;
+    }
+
+    public void addHead(Node baru){
+        if (head == null){ //kalau listnya null/kosong nanti head sm tailnya isinya node baru
+            head = baru;
+            tail = baru;
+        }else{
+            //buat naruh paling depan(head)
+            baru.setNext(head); // node skrg(baru) di sambungin dulu ke head(node baru-->head)
+            head = baru;
         }
     }
-	public void add(Node baru, String setelah){
-		if (head == null) {
-			add(baru);
-		}
-		else {
-			Node temp = head;
-			while(temp != null) {
-				if(temp.getData().getNama().equals(setelah)) {
-					break;
-				}
-				temp = temp.getNext();
-			}
-			temp.getNext().setPrev(baru);
-			baru.setPrev(temp);
-			baru.setNext(temp.getNext());
-			temp.setNext(baru);
-		}
+
+    public void addTail(Node baru){
+        if (tail == null){
+            head = baru;
+            tail = baru;
+        }else{
+            tail.setNext(baru); // node skrg(tail) di sambungin dulu ke node baru krn kita mau addtail(tail->node baru)
+            tail = baru;
+        }
     }
-	public void add_back(Node baru) {
-		if(tail==null) {
-			tail=baru;
-			head=baru;
-		}
-		else {
-			baru.setPrev(tail);
-			tail.setNext(baru);
-			tail=baru;
-		}
-	}
-	public void hapus() {
-		if (head == null) {
-			System.out.println("Data kosong");
-		}
-		else {
-			Node hapus = head;
-			head = head.getNext();
-			head.setPrev(null);
-			hapus = null;
-		}
-	}
-	public void hapus(String judul) {
-		Node temp = head;
-		if (head.getData().getNama().equals(judul)) {
-			hapus();
-		}
-		else if(tail.getData().getNama().equals(judul)) {
-			hapus_akhir();
-		}
-		while (temp != null) {
-			if(temp.getNext() == null) {
-				System.out.println("data rk nemu");
-				break;
-			}
-			else if (temp.getNext().getData().getNama().equals(judul)) {
-				Node hapus = temp.getNext();
-				temp.setNext(hapus.getNext());
-				hapus.getNext().setPrev(temp);
-				hapus = null;
-				break;
-			}
-			temp = temp.getNext();
-		}
-	}
-	public void hapus_akhir() {
-		if (tail == null) {
-			System.out.println("data kosong");
-		}
-		else {
-			Node hapus = tail;
-			tail = tail.getPrev();
-			tail.setNext(null);
-			hapus = null;
-		}
-	}
-	
-	public void merge(MyLinkedList l2) {
-		if(this.head == null || l2.head == null) {
-			return;
-		}
-		this.tail.setNext(l2.head);
-		l2.head.setPrev(this.tail);
-		this.tail = l2.tail;
-	}
-	
-	public void cetaklist(){
+
+    public void deleteHead() {
+        if (head !=null){ //kalau list headnya ga null(kosong) nanti headnya bakal di pindah ke list brktnya alias head yg skrg nanti ke apus dan headnya udah ga sama lagi
+            head = head.getNext(); //headnya nanti bakal ke replace sama node berikutnya
+        }
+    }
+
+    public void deleteTail(){
+        if (head == null){
+            return;
+        }
+       
+        if (head.getNext() == null){
+            head = null;
+            return;
+        }
+       
         Node temp = head;
-        while(temp != null){
-            temp.cetak();
+        while (temp.getNext().getNext() != null){
             temp = temp.getNext();
         }
-	}
-	public void cetaklist_akhir(){
-        Node temp = tail;
-        while(temp != null){
-            temp.cetak();
-            temp = temp.getPrev();
+        temp.setNext(null);
+        tail=temp;
+    }
+
+
+    public void cetakList() {
+        Node temp = head;
+        System.out.print("HEADNYA ADALAH: \n");
+        head.cetak(); //buat cetak head
+        System.out.print("\n");
+       
+        //temp = tail;
+        //System.out.print("TAILNYA ADALAH: \n");
+        //tail.cetak();
+        //System.out.print("\n");
+       
+        while(temp !=null){
+            temp.cetak(); //buat cetak semua list nya
+            temp=temp.getNext();  
         }
-	}
-	
+       
+         System.out.print("\n");
+         
+        Node rawr = tail;
+        System.out.print("TAILNYA ADALAH: \n");
+        tail.cetak();
+        System.out.print("\n");
+       
+        while(rawr !=null){
+            //rawr.cetak();
+            rawr=rawr.getNext();  
+        }
+       
+        //System.out.print("\n");
+       
+    }
 }
+   
+    //public void cetakTail() {
+        //Node rawr = tail;
+        //System.out.print("TAILNYA ADALAH: \n");
+        //tail.cetak();
+        //System.out.print("\n");
+       
+        //while(rawr !=null){
+            //rawr.cetak();
+            //rawr=rawr.getNext();  
+        //}
+       
+         //System.out.print("\n");
+       
+    //}
+//}
+
