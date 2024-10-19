@@ -1,5 +1,5 @@
-public class MyLinkedList {
-	private Node head, tail;
+public class Playlist {
+	private Node head, tail, posisi;
 	public void add(Node baru){
         if(head==null){
             head=baru;
@@ -11,25 +11,45 @@ public class MyLinkedList {
             head=baru;
         }
     }
+	public void hapus_coba() {
+		Node hapus = head;
+		hapus = null;
+	}
+		
 	public void add(Node baru, String setelah){
+		boolean status = true;
 		if (head == null) {
 			add(baru);
 		}
 		else {
-			Node temp = head;
-			while(temp != null) {
-				if(temp.getData().getNama().equals(setelah)) {
-					break;
-				}
-				temp = temp.getNext();
+			if(tail.getData().getJudul().equals(setelah)) {
+				add_belakang(baru);
+				status = false;
 			}
-			temp.getNext().setPrev(baru);
-			baru.setPrev(temp);
-			baru.setNext(temp.getNext());
-			temp.setNext(baru);
+			else {
+				Node temp = head;
+				while(temp != null) {
+					if(temp.getData().getJudul().equals(setelah)) {
+						status = false;
+						break;
+					}
+					temp = temp.getNext();
+				}
+				if (temp != null) {
+					temp.getNext().setPrev(baru);
+					baru.setPrev(temp);
+					baru.setNext(temp.getNext());
+					temp.setNext(baru);
+				}
+			}
+		}
+		if (status) {
+			System.out.println(setelah + " Judul tidak ditemukan, akan ditambahkan di depan");
+			System.out.println();
+			add(baru);
 		}
     }
-	public void add_back(Node baru) {
+	public void add_belakang(Node baru) {
 		if(tail==null) {
 			tail=baru;
 			head=baru;
@@ -53,10 +73,10 @@ public class MyLinkedList {
 	}
 	public void hapus(String judul) {
 		Node temp = head;
-		if (head.getData().getNama().equals(judul)) {
+		if (head.getData().getJudul().equals(judul)) {
 			hapus();
 		}
-		else if(tail.getData().getNama().equals(judul)) {
+		else if(tail.getData().getJudul().equals(judul)) {
 			hapus_akhir();
 		}
 		while (temp != null) {
@@ -64,7 +84,7 @@ public class MyLinkedList {
 				System.out.println("data rk nemu");
 				break;
 			}
-			else if (temp.getNext().getData().getNama().equals(judul)) {
+			else if (temp.getNext().getData().getJudul().equals(judul)) {
 				Node hapus = temp.getNext();
 				temp.setNext(hapus.getNext());
 				hapus.getNext().setPrev(temp);
@@ -85,16 +105,39 @@ public class MyLinkedList {
 			hapus = null;
 		}
 	}
+	public void hapus_all() {
+		head = null;
+		tail = null;
+	}
 	
-	public void merge(MyLinkedList l2) {
+	public void merge(Playlist l2) {
 		if(this.head == null || l2.head == null) {
 			return;
 		}
 		this.tail.setNext(l2.head);
 		l2.head.setPrev(this.tail);
 		this.tail = l2.tail;
+		l2.head = this.head;
 	}
 	
+	public int hitung() {
+		int jumlah = 0;
+		Node temp = head;
+		while(temp != null) {
+			jumlah++;
+			temp.getNext();
+		}
+		return jumlah;
+	}
+	public void play() {
+		if(hitung() == 0) {
+			System.out.println("Playlist kosong");
+		}
+		else {
+			posisi = head;
+		}
+	}
+
 	public void cetaklist(){
         Node temp = head;
         while(temp != null){
@@ -109,5 +152,4 @@ public class MyLinkedList {
             temp = temp.getPrev();
         }
 	}
-	
 }
