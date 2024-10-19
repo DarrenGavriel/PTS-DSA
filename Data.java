@@ -1,26 +1,33 @@
 public class Data {
-	private String nama;
-	private int tahun;
-	
-	Data (String nama, int tahun){
-		setNama(nama);
-		setTahun(tahun);
+	private String judul, penyanyi;
+	private int detik;
+	public Data() {
+
 	}
-	// ini buat setter nama
-	public void setNama(String nama) {
-		this.nama = nama;
+	Data (String Judul, String penyanyi, int detik){
+		setJudul(Judul);
+		setDetik(detik);
+		setPenyanyi(penyanyi);
 	}
-	// ini buat 
-	public String getNama() {
-		return nama;
+	public void setJudul(String judul) {
+		this.judul = judul;
+	} 
+	public String getJudul() {
+		return judul;
 	}
-	public void setTahun(int tahun) {
-		this.tahun = tahun;
+	public void setDetik(int detik) {
+		this.detik = detik;
 	}
 	public int getTahun() {
-		return tahun;
+		return detik;
+	}
+	public void setPenyanyi(String penyanyi) {
+		this.penyanyi = penyanyi;
+	}
+	public String getPenyanyi() {
+		return penyanyi;
 	}
 	public void cetakData() {
-        System.out.println(nama + ", "+ tahun); 
+        System.out.println(judul + ", "+ penyanyi+", "+ detik); 
     }
 }
