@@ -1,0 +1,51 @@
+//kelas data darren x vara
+public class Data {
+	private String nama;
+	private int tahun; 
+	private String judul;
+	private String penyanyi;
+	private int durasi;
+	
+	Data (String nama, int tahun, String judul, String penyanyi, int durasi){
+		setNama(nama);
+		setTahun(tahun);
+		setJudul(judul);
+		setPenyanyi(penyanyi);
+		setDurasi(durasi);
+	}
+	// ini buat setter nama
+	public void setNama(String nama) {
+		this.nama = nama;
+	}
+	// ini buat 
+	public String getNama() {
+		return nama;
+	}
+	public void setTahun(int tahun) {
+		this.tahun = tahun;
+	}
+	public int getTahun() {
+		return tahun;
+	}
+	public void setJudul(String judul) {
+	    this.judul = judul;
+    }
+    public String getJudul(){
+        return judul;
+    }
+    public void setPenyanyi(String penyanyi){
+        this. penyanyi = penyanyi;
+    }
+    public String getPenyanyi(){
+        return penyanyi;
+    }
+    public void setDurasi(int durasi){
+        this.durasi = durasi;
+    }
+    public int getDurasi(){
+        return durasi;
+    }
+	public void cetakData() {
+        System.out.println(nama + ", Tahun Rilis: " + tahun + ", Judul Lagu: " + judul + ", Penyanyi: " + penyanyi + ", Durasi lagu: "+ durasi + " detik"); 
+    }
+}
