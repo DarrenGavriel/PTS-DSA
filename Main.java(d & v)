@@ -1,0 +1,25 @@
+//KELAS MAIN darren & vara
+public class Main {
+
+	public static void main(String[] args) {
+		MyLinkedList coba = new MyLinkedList();
+		coba.add(new Node(new Data("urutan 1", 2024, "supernova", "aespa", 156), null, null));
+		coba.add(new Node(new Data("urutan 2", 2022, "Love Dive", "IVE", 165), null, null));
+		coba.add(new Node(new Data("urutan 3", 2023, "Paradoxx", "Enhypen", 159), null, null));
+		coba.add(new Node(new Data("urutan 4", 2024, "Magnetic", "ILLIT", 163), null, null));
+		coba.add(new Node(new Data("urutan 5", 2023, "Super Shy", "New Jeans", 178), null, null));
+		coba.add(new Node(new Data("ini tambah tengah", 2018, "Miroh", "Stray KIds", 148), null, null), "urutan 3");
+		
+		coba.cetaklist();
+		System.out.println();
+
+		MyLinkedList l2 = new MyLinkedList();
+		l2.add(new Node (new Data("new1", 2022, "Life's Too Short", "aespa", 139), null, null));
+		l2.add(new Node (new Data("new2", 2050, "Drunk Text", "Henry Moodie", 152), null, null));
+		
+		coba.merge(l2);
+		coba.cetaklist();
+		System.out.println();
+		coba.cetaklist_akhir();
+	}
+}
