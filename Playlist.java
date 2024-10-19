@@ -138,14 +138,14 @@ public class Playlist {
 		}
 	}
 
-	public void cetaklist(){
+	public void cetaklist(){ // cetak dari head
         Node temp = head;
         while(temp != null){
             temp.cetak();
             temp = temp.getNext();
         }
 	}
-	public void cetaklist_akhir(){
+	public void cetaklist_akhir(){ // Cetak dari tail
         Node temp = tail;
         while(temp != null){
             temp.cetak();
