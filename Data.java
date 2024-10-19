@@ -1,33 +1,47 @@
 public class Data {
-	private String judul, penyanyi;
-	private int detik;
-	public Data() {
+    private String title;
+    private String singer;
+    private int year;
+    private int duration;
 
-	}
-	Data (String Judul, String penyanyi, int detik){
-		setJudul(Judul);
-		setDetik(detik);
-		setPenyanyi(penyanyi);
-	}
-	public void setJudul(String judul) {
-		this.judul = judul;
-	} 
-	public String getJudul() {
-		return judul;
-	}
-	public void setDetik(int detik) {
-		this.detik = detik;
-	}
-	public int getTahun() {
-		return detik;
-	}
-	public void setPenyanyi(String penyanyi) {
-		this.penyanyi = penyanyi;
-	}
-	public String getPenyanyi() {
-		return penyanyi;
-	}
-	public void cetakData() {
-        System.out.println(judul + ", "+ penyanyi+", "+ detik); 
+    public Data(String title,String singer,int year,int duration){
+    setTitle(title);
+    setSinger(singer);
+    setYear(year);
+    setDuration(duration);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getTitle(){
+        return title;
+    }
+
+    public void setSinger(String singer) {
+        this.singer = singer;
+    }
+    public String getSinger(){
+        return singer;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+    public int getDuration(){
+        return duration;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+    public int getYear(){
+        return year;
+    }
+
+    public void cetakData(){
+            System.out.printf("| %-15s | %-15s | %-6d | %-5d detik |%n", getTitle(), getSinger(), getYear(), getDuration()); 
+        //System.out.println(title + " - " + singer + " , " + year +  " [" + duration + " detik]" );
     }
 }
+
