@@ -1,0 +1,282 @@
+//KODINGAN DARREN x VARA YG BARU
+
+KELAS NODE
+public class Node {
+	private Node next, prev;
+	private Data data;
+	public Node() {
+		data = null;
+		next = null;
+		prev = null;
+	}
+	public Node(Data d, Node n, Node p) {
+		next = n;
+		prev = p;
+		data = d;
+	}
+	public void setNext(Node n) {
+		next = n;
+	}
+	public Node getNext() {
+		return next;
+	}
+	public void setPrev(Node p) {
+		prev = p;
+	}
+	public Node getPrev() {
+		return prev;
+	}
+	public void setData(Data d) {
+		data = d;
+	}
+	public Data getData() {
+		return data;
+	}
+	// untuk mencetak data dari memanggil metode cetak data melalui referense data
+	public void cetak() {
+		data.cetakData();	
+	}
+}
+
+
+
+
+KELAS DATA
+public class Data {
+	private String judulLagu, penyanyiLagu;
+	private int durasiLagu, tahunRilis;
+	public Data() {
+
+	}
+	Data (String judul, String penyanyi, int durasi, int tahun){
+		setJudulLagu(judul);
+		setDurasiLagu(durasi);
+		setPenyanyiLagu(penyanyi);
+		setTahunRilis(tahun);
+	}
+	public void setJudulLagu(String judul) {
+		this.judulLagu = judul;
+	} 
+	public String getJudulLagu() {
+		return judulLagu;
+	}
+	public void setDurasiLagu(int durasi) {
+		this.durasiLagu = durasi;
+	}
+	public int getDurasiLagu() {
+		return durasiLagu;
+	}
+	public void setPenyanyiLagu(String penyanyi) {
+		this.penyanyiLagu = penyanyi;
+	}
+	public String getPenyanyiLagu() {
+		return penyanyiLagu;
+	}
+	public void setTahunRilis(int tahun) {
+		this.tahunRilis = tahun;
+	}
+	public int getTahunRilis() {
+		return tahunRilis;
+	}
+	public void cetakData() {
+        System.out.println(judulLagu + ", "+ penyanyiLagu+", "+ durasiLagu +" ,"+ tahunRilis); 
+    }
+}
+
+
+
+KELAS PLAYLIST
+public class Playlist {
+	private Node head, tail, posisi;
+	
+	public void addHead(Node baru){
+        if(head==null){
+            head=baru;
+            tail=baru;
+        }
+        else{
+            baru.setNext(head);
+            head.setPrev(baru);
+            head=baru;
+        }
+    }
+		
+	public void addMid(Node baru, String setelah){
+		boolean status = true;
+		if (head == null) {
+			addHead(baru);
+		}
+		else {
+			if(tail.getData().getJudulLagu().equals(setelah)) {
+				addTail(baru);
+				status = false;
+			}
+			else {
+				Node temp = head;
+				while(temp != null) {
+					if(temp.getData().getJudulLagu().equals(setelah)) {
+						status = false;
+						break;
+					}
+					temp = temp.getNext();
+				}
+				if (temp != null) {
+					temp.getNext().setPrev(baru);
+					baru.setPrev(temp);
+					baru.setNext(temp.getNext());
+					temp.setNext(baru);
+				}
+			}
+		}
+		if (status) {
+			System.out.println(setelah + " Judul tidak ditemukan, akan ditambahkan di depan");
+			System.out.println();
+			addHead(baru);
+		}
+    }
+	public void addTail(Node baru) {
+		if(tail==null) {
+			tail=baru;
+			head=baru;
+		}
+		else {
+			baru.setPrev(tail);
+			tail.setNext(baru);
+			tail=baru;
+		}
+	}
+	public void deleteHead() {
+		if (head == null) {
+			System.out.println("Data kosong");
+		}
+		else {
+			Node hapus = head;
+			head = head.getNext();
+			head.setPrev(null);
+			hapus = null;
+		}
+	}
+	public void deleteMid(String judulLagu) {
+		Node temp = head;
+		if (head.getData().getJudulLagu().equals(judulLagu)) {
+			deleteHead();
+		}
+		else if(tail.getData().getJudulLagu().equals(judulLagu)) {
+			deleteTail();
+		}
+		while (temp != null) {
+			if(temp.getNext() == null) {
+				System.out.println("data rk nemu");
+				break;
+			}
+			else if (temp.getNext().getData().getJudulLagu().equals(judulLagu)) {
+				Node hapus = temp.getNext();
+				temp.setNext(hapus.getNext());
+				hapus.getNext().setPrev(temp);
+				hapus = null;
+				break;
+			}
+			temp = temp.getNext();
+		}
+	}
+	public void deleteTail() {
+		if (tail == null) {
+			System.out.println("data kosong");
+		}
+		else {
+			Node hapus = tail;
+			tail = tail.getPrev();
+			tail.setNext(null);
+			hapus = null;
+		}
+	}
+	public void hapus_all() {
+		head = null;
+		tail = null;
+	}
+	
+	public void merge(Playlist l2) {
+		if(this.head == null || l2.head == null) {
+			return;
+		}
+		this.tail.setNext(l2.head);
+		l2.head.setPrev(this.tail);
+		this.tail = l2.tail;
+		l2.head = this.head;
+	}
+	
+	public int hitung() {
+		int jumlah = 0;
+		Node temp = head;
+		while(temp != null) {
+			jumlah++;
+			temp.getNext();
+		}
+		return jumlah;
+	}
+	public void play() {
+		if(hitung() == 0) {
+			System.out.println("Playlist kosong");
+		}
+		else {
+			posisi = head;
+		}
+	}
+
+	public void cetaklist(){ // cetak dari head
+        Node temp = head;
+        System.out.println("HEADNYA:"); 
+        head.cetak();
+        System.out.println("TAILNYA:"); 
+        tail.cetak();
+        System.out.println("\n");
+        while(temp != null){
+            temp.cetak();
+            temp = temp.getNext();
+        }
+	}
+	public void cetaklist_akhir(){ // Cetak dari tail
+        Node temp = tail;
+        System.out.println("HEADNYA:"); 
+        head.cetak();
+        System.out.println("TAILNYA:"); 
+        tail.cetak();
+        while(temp != null){
+            temp.cetak();
+            temp = temp.getPrev();
+        }
+	}
+}
+
+
+KELAS MAIN
+public class Main {
+
+	public static void main(String[] args) {
+		Playlist coba = new Playlist();
+		coba.addHead(new Node(new Data("Like that", "Metro Boomin", 267, 2020), null, null));
+		coba.addHead(new Node(new Data("Superhero", "Metro Boomin", 182, 2021), null, null));
+		coba.addHead(new Node(new Data("LILAC", "IU", 214, 2019), null, null));
+		coba.addTail(new Node(new Data("Starlight", "Dave", 212, 2022), null, null));
+		coba.addTail(new Node(new Data("Eight", "IU", 167, 2019), null, null));
+		coba.addMid(new Node(new Data("Reckless", "Madison Beer", 203, 2022), null, null), "Like ");
+		coba.addTail(new Node(new Data("Cookie", "NewJeans", 200, 2021), null, null));
+		coba.addMid(new Node(new Data("Celebrity", "IU", 242, 2019), null, null), "Starlight");
+        
+		coba.cetaklist();// ini list asli
+		System.out.println();
+
+		Playlist l2 = new Playlist();
+		l2.addHead(new Node (new Data("Mask Off", "Future", 204, 2017), null, null));
+		l2.addHead(new Node (new Data("Tore Up", "Don Toliver", 126, 2021), null, null));
+		l2.addTail(new Node (new Data("HOT", "Seventeen", 154, 2023), null, null));
+		System.out.println();
+		
+		l2.cetaklist();// ini print l2
+		l2.merge(coba);
+		System.out.println();
+		
+		l2.cetaklist();// hasil merge sama l2
+		System.out.println();
+	}
+}
