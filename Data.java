@@ -1,6 +1,4 @@
-KELAS DATA
-	//Semua kerjain
-	public class Data { 
+	public class Data { //Semua Kerjain 
 	private String judulLagu, penyanyiLagu; 
 	private int durasiLagu, tahunRilis;
 	public Data() 
