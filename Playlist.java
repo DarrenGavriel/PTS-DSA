@@ -1,6 +1,7 @@
 //KELAS PLAYLIST
 public class Playlist {
-	private Node head, tail, posisi;
+	private Node head, tail;
+	private Node posisi = null; //digunakan untuk mengetahui sampai mana kita memainkan lagu
 	
 	public void addHead(Node baru){
 	        if(head==null){
@@ -105,40 +106,175 @@ public class Playlist {
 		}
 	}
 		
-	public void hapus_all() {
-		head = null;
-		tail = null;
-	}
-	
-	public void merge(Playlist l2) {
-		if(this.head == null || l2.head == null) {
-			return;
+	/*
+	* method's function = untuk menyatukan playlist dengan nama l2 pada bagian akhir playlist sekarang ini
+	• [ Created date: 18 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Njo, Darren Gavriel Vankalino Santoso ) ]
+
+	 */
+	public void merge_back(Playlist l2) { //parameter l2 merupakan playlist yang ingin kita merge ke bagian akhir playlist sekarang ini
+		if(this.head == null || l2.head == null) { //Mengecek apakah playlist sekarang ini atau playlist l2 kosong.
+			return;// kembali langsung dan metode tidak berjalan
 		}
-		this.tail.setNext(l2.head);
-		l2.head.setPrev(this.tail);
-		this.tail = l2.tail;
-		l2.head = this.head;
+		else {
+			//menghubungkan bagian akhir dari playlist ini menuju ke bagian awal/head playlist l2
+			this.tail.setNext(l2.head);
+			l2.head.setPrev(this.tail);
+			//mengubah tail playlist ini menjadi bagian akhir/tail playlist l2
+			this.tail = l2.tail;
+			//mengubah bagian awal/head dari playlist l2, menjadi playlist sekarang ini 
+			l2.head = this.head;
+		}
 	}
-		
+	/*
+	* method's function = untuk menyatukan playlist dengan nama l2 pada bagian awal/head playlist sekarang ini
+	• [ Created date: 19 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Njo, Darren Gavriel Vankalino Santoso ) ]
+
+	 */
+	public void merge_front(Playlist l2) { //parameter l2 merupakan playlist yang ingin kita merge ke bagian awal/head playlist sekarang ini
+		if (this.head == null || l2.head == null) {// mengecek apakah salah satu atau keduanya ada yang kosong
+			return;// kembali langsung, dan metode tidak berjalan
+		}
+		else {
+			//menghubungkan bagian awal/head dari playlist sekarang ini dengan bagian akhir/tail dari playlist l2
+			l2.tail.setNext(this.head);
+			this.head.setPrev(l2.tail);
+			//mengubah bagian awal/head playlist sekarang ini menjadi bagian awal/head dari playlist l2 
+			this.head = l2.head;
+			//menjadikan bagian akhir/tail dari playlist l2 menjadi bagian akhir dari playlist sekarang ini, karena saya membuat playlist l2 juga memiliki hasil yang sama dengan playlist sekarang ini
+			l2.tail = this.tail;
+		}
+	}
+	/*
+	* method's function = untuk menyatukan playlist dengan nama l2 pada bagian engah playlist sekarang ini
+	• [ Created date: 19 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Njo, Darren Gavriel Vankalino Santoso ) ]
+	* parameter l2 merupakan playlist yang akan kita merge dengan playlist sekarang ini, parameter setelah bertipe String yang akan kita patokan dimana akan kita selipkan playlis l2
+	 */
+	public void merge_middle(Playlist l2, String setelah) { 
+			if (this.head == null || l2.head == null) {//mengecek apakah salah satu atau keduanya playlist kosong
+				return;//langsung keluar, dan metode tidak berjalan
+			}
+			else {
+				if(tail.getData().getJudul().equals(setelah)) {//mengecek apakah bagian akhir/tail dari playlist sekarang ini itu cocok dengan parameter setelah 
+					merge_back(l2);//dikirim ke method merge_back, dan di merge pada ke bagian belakang
+				}
+				else {
+					//mencari judul yang sesuai dengan parameter setelah
+					Node temp = head;
+					while(temp != null) {
+						if(temp.getData().getJudul().equals(setelah)) {
+							break;//lagu ketemu dan keluar dari while loop
+						}
+						temp = temp.getNext();
+					}
+					//jika ada judul yang sesuai maka kita merge kedua playlist tersebut 
+					if(temp != null) {						
+						//menyambungkan bagian akhir/tail dengan lagu setelah, lagu yang ditemukan
+						temp.getNext().setPrev(l2.tail);
+						l2.tail.setNext(temp.getNext());
+						//menyambungkan bagian awal/head playlist l2 menuju lagu yang diinginkan
+						temp.setNext(l2.head);
+						l2.head.setPrev(temp);
+						//mengubah bagian awal/head dan bagian akhir/tail dari playlist l2 dengan head dan tail playlist sekarang ini
+						l2.head = this.head;
+						l2.tail = this.tail;
+					}
+					else {// jika tidak ada judul yang sesuai maka akan diarahkan ke metode merge_back()
+						System.out.println(setelah + " lagu tersebut tidak ada, akan ditambahkan pada bagian akhir playlist" );
+						merge_back(l2);
+					}
+				}
+			}
+	}
+	/*
+	* method's function = untuk menghitung berapa jumlah lagu yang terdapat pada suatu playlist
+	• [ Created date: 18 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Njo, Darren Gavriel Vankalino Santoso ) ]
+
+	 */
 	public int hitung() {
-		int jumlah = 0;
+		int jumlah = 0; // inisialisasi variabel tipe integer untuk menyimpan jumlah lagu
 		Node temp = head;
+		// looping yang terus menerus sampai akhir dari playlist , untuk menghitung jumlah lagu
 		while(temp != null) {
 			jumlah++;
-			temp.getNext();
+			temp = temp.getNext();
 		}
 		return jumlah;
 	}
-	
-	public void play() {
-		if(hitung() == 0) {
+	/*
+	* method's function = untuk memulai memutar lagu dari paling awal/head
+	• [ Created date: 19 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Njo, Darren Gavriel Vankalino Santoso ) ]
+
+	 */
+	public void playAtFront() {
+		if(hitung() == 0) { // mengecek apakah playlist kosong
 			System.out.println("Playlist kosong");
 		}
-		else {
-			posisi = head;
+		else{
+			posisi = head; // jika tidak kosong maka posisi dijadikan menjadi posisi head
+			playlagu();
 		}
 	}
+	/*
+	* method's function = untuk memulai memutar lagu dari paling akhir/tail
+	• [ Created date: 19 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Njo, Darren Gavriel Vankalino Santoso ) ]
 
+	 */
+	public void playAtLast() { 
+		if(hitung() == 0) {// mengecek apakah playlist kosong
+			System.out.println("Playlist kosong");
+		}
+		else{
+			posisi = tail; //jika tidak kosong maka posisi dijadikan menjadi posisi tail
+			playlagu();
+		}
+	}
+	/*
+	* method's function = untuk memainkan lagu berikutnya pada playlist
+	• [ Created date: 19 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Njo, Darren Gavriel Vankalino Santoso ) ]
+
+	 */
+	public void play_next() {
+		if (posisi == null) { //Mengecek apakah sudah memulai memainkan musik atau belum
+			playAtFront(); //jika belum maka memulai memutar lagu dari paling awal/head
+		}
+		else {
+			if (posisi.getNext() != null) {//jika sudah memulai maka mengecek apakah berikutnya masih terdapat lagu
+				posisi = posisi.getNext();
+				playlagu();
+			}
+			else { //jika tidak ada lagu berikutnya maka akan masuk kedalam sini
+				System.out.println("Lagu sudah habis");
+			}
+		}
+	}
+	/*
+	* method's function = untuk memainkan lagu sebelumnya pada playlist
+	• [ Created date: 19 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Njo, Darren Gavriel Vankalino Santoso ) ]
+
+	 */
+	public void play_prev() {
+		if (posisi == null) { //mengecek apakah sudah memulai memainkan lagu
+			playAtLast(); //jika belum maka akan memulai memainkan lagu dari posisi akhir/tail
+		}
+		else {
+			if (posisi.getPrev() != null) { //jika sudah memulai memainkan musik, maka mengecek apakah terdapat lagu sebelum lagu yang dimulai
+				posisi = posisi.getPrev();
+				playlagu();
+			} else {//jika tidak ada lagu sebelum lagu yang dimainkan maka akan masuk kedalam sini
+				System.out.println("Lagu sudah habis");
+			}
+		}
+	}
+		
+	
 	public void findData(String data) {
 		int find=0; //digunakan untuk mencari apakah data itu ditemukan dalam list atau tidak, membuat variable baru untuk nantinya dipanggil menggunakan if
 		System.out.printf("Mencari data: " + data + "\n");
@@ -239,6 +375,15 @@ public class Playlist {
 			tail=dataToMove;//nek ora ono data sakwise afterNode, yo tail e di ganti dadi dataToMove
 		}
 		
+	}
+	/*
+	* method's function = untuk menampilkan lagu yang sedang diputar
+	• [ Created date: 19 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Njo, Darren Gavriel Vankalino Santoso ) ]
+
+	 */
+	private void playlagu() { 
+		System.out.println("Now Playing "+ posisi.getData().getJudul()+ " by "+posisi.getData().getPenyanyi());
 	}
 	public void cetaklist(){ // cetak dari head
 	        Node temp = head;
