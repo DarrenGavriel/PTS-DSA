@@ -1,7 +1,3 @@
-
-//KODINGAN DARREN x VARA YG BARU
-
-KELAS NODE
 public class Node {
 	private Node next, prev;
 	private Data data;
