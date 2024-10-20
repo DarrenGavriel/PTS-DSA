@@ -4,6 +4,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		Playlist coba = new Playlist();
+        System.out.println(" ~ Playlist Lagu ~ ");
+        
+        // Membuat format header
+        String headerFormat = "| %-15s | %-15s | %-6s | %-5s |%n"; //blm paham,blm di jelasin jojo
+        System.out.format(headerFormat, "Judul Lagu", "Penyanyi", "Tahun", "Durasi"); 
+        
 		coba.addHead(new Node(new Data("Like that", "Metro Boomin", 267, 2020), null, null));
 		coba.addHead(new Node(new Data("Superhero", "Metro Boomin", 182, 2021), null, null));
 		coba.addHead(new Node(new Data("LILAC", "IU", 214, 2019), null, null));
@@ -23,7 +29,7 @@ public class Main {
 		System.out.println();
 		
 		l2.cetaklist();// ini print l2
-		l2.merge(coba);
+		coba.merge_back(l2);;
 		System.out.println();
 		
 		l2.cetaklist();// hasil merge sama l2
@@ -50,6 +56,22 @@ public class Main {
 		coba.moveData("Tore Up", "Give Love");//GIVE LOVE TIDAK ADA DI DALAM LIST
 		coba.moveData("Nxde", "Give Love");//KEDUA DATA TIDAK ADA DI DALAMLIST
 		
+		//cetak dari head
+		coba.cetaklist();
+		System.out.println();
+
+        // Mengedit judul lagu
+        String penyanyiLagu = "Madison Beer";
+        String judulBaru = "Make You Mine";
+        coba.editJudulLagu(penyanyiLagu, judulBaru); 
+		coba.playAtFront();
+		coba.play_next();
+        coba.play_prev();
+
+        // Cetak daftar lagu setelah diubah
+        System.out.println("\nDaftar lagu setelah diubah:");
+        coba.cetaklist();
 	}
 }
+
 
