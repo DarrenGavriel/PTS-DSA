@@ -1,10 +1,10 @@
 //KELAS PLAYLIST
 
 public class Playlist {
-	private Node head, tail;
+	private Node head, tail; //vara
 	private Node posisi = null; //digunakan untuk mengetahui sampai mana kita memainkan lagu
 	
-	public void addHead(Node baru){
+	public void addHead(Node baru){ //vara
 	        if(head==null){
 	            head=baru;
 	            tail=baru;
@@ -49,7 +49,7 @@ public class Playlist {
 			addHead(baru);
 		}
 	}
-	public void addTail(Node baru) {
+	public void addTail(Node baru) { //vara
 		if(tail==null) {
 			tail=baru;
 			head=baru;
@@ -60,7 +60,7 @@ public class Playlist {
 			tail=baru;
 		}
 	}
-	public void deleteHead() {
+	public void deleteHead() { //vara
 		if (head == null) {
 			System.out.println("Data kosong");
 		}
@@ -95,7 +95,7 @@ public class Playlist {
 			}
 		}	
 		
-	public void deleteTail() {
+	public void deleteTail() { //vara
 		if (tail == null) {
 			System.out.println("data kosong");
 		}
@@ -429,7 +429,7 @@ public class Playlist {
 	private void playlagu() { 
 		System.out.println("Now Playing "+ posisi.getData().getJudulLagu()+ " by "+posisi.getData().getPenyanyiLagu());
 	}
-	public void cetaklist(){ // cetak dari head
+	public void cetaklist(){ // cetak dari head (vara)
 	        Node temp = head;
 	        System.out.println("HEADNYA:"); 
 	        head.cetak();
@@ -441,7 +441,7 @@ public class Playlist {
 	            temp = temp.getNext();
 		}
 	}
-	public void cetaklist_akhir(){ // Cetak dari tail
+	public void cetaklist_akhir(){ // Cetak dari tail (vara)
 	        Node temp = tail;
 	        System.out.println("HEADNYA:"); 
 	        head.cetak();
