@@ -97,6 +97,16 @@ public class Main {
         playlist_1.play_prev();
         playlist_1.play_prev();
         playlist_1.play_next();
+
+	Playlist playlist_4 = new Playlist();
+	playlist_4.addHead(new Node (new Data("Chosen", "tyga", 186, 2019), null, null));
+	playlist_4.addHead(new Node (new Data("Stay", "Justin Bieber", 146, 2021), null, null));
+	playlist_4.addHead(new Node (new Data("AOK", "Tai Verdes", 154, 2023), null, null));
+	System.out.println("Merge di tengah");
+	System.out.println();
+	
+	playlist_1.merge_middle(playlist_4, "Starlight");
+	playlist_1.cetaklist();
 	}
 }
 
