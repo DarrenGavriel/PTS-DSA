@@ -1,3 +1,11 @@
+/**********************
+* Author: Gracia
+* Date: 17 - Oktober - 2024
+* Modified date : 20-Oktober-2024 (by : Gracia)
+* Filename: Main.java
+* Description: Class main ini untuk menjalankan semua method yang terdapat di class Data.java, Node.java, dan Playlist.java
+**********************/
+
 public class Main {
 
 	public static void main(String[] args) {
