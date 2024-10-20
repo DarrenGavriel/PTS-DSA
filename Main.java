@@ -1,76 +1,74 @@
-package UTS_DSA;
-
 public class Main {
 
 	public static void main(String[] args) {
-		Playlist coba = new Playlist();
+	Playlist playlist_1 = new Playlist();
         System.out.println(" ~ Playlist Lagu ~ ");
         
         // Membuat format header
         String headerFormat = "| %-15s | %-15s | %-6s | %-5s |%n"; //blm paham,blm di jelasin jojo
         System.out.format(headerFormat, "Judul Lagu", "Penyanyi", "Tahun", "Durasi"); 
                 //ADDHEAD & ADD TAIL -VARA
-		coba.addHead(new Node(new Data("Like that", "Metro Boomin", 267, 2020), null, null));
-		coba.addHead(new Node(new Data("Superhero", "Metro Boomin", 182, 2021), null, null));
-		coba.addHead(new Node(new Data("LILAC", "IU", 214, 2019), null, null));
-		coba.addTail(new Node(new Data("Starlight", "Dave", 212, 2022), null, null));
-		coba.addTail(new Node(new Data("Eight", "IU", 167, 2019), null, null));
-		coba.addMid(new Node(new Data("Reckless", "Madison Beer", 203, 2022), null, null), "Like ");
-		coba.addTail(new Node(new Data("Cookie", "NewJeans", 200, 2021), null, null));
-		coba.addMid(new Node(new Data("Celebrity", "IU", 242, 2019), null, null), "Starlight");
+		playlist_1.addHead(new Node(new Data("Like that", "Metro Boomin", 267, 2020), null, null));
+		playlist_1.addHead(new Node(new Data("Superhero", "Metro Boomin", 182, 2021), null, null));
+		playlist_1.addHead(new Node(new Data("LILAC", "IU", 214, 2019), null, null));
+		playlist_1.addTail(new Node(new Data("Starlight", "Dave", 212, 2022), null, null));
+		playlist_1.addTail(new Node(new Data("Eight", "IU", 167, 2019), null, null));
+		playlist_1.addMid(new Node(new Data("Reckless", "Madison Beer", 203, 2022), null, null), "Like ");
+		playlist_1.addTail(new Node(new Data("Cookie", "NewJeans", 200, 2021), null, null));
+		playlist_1.addMid(new Node(new Data("Celebrity", "IU", 242, 2019), null, null), "Starlight");
         
-		coba.cetaklist();// ini list asli
+		playlist_1.cetaklist();// ini list asli
 		System.out.println();
 
-		Playlist l2 = new Playlist();
-		l2.addHead(new Node (new Data("Mask Off", "Future", 204, 2017), null, null));
-		l2.addHead(new Node (new Data("Tore Up", "Don Toliver", 126, 2021), null, null));
-		l2.addTail(new Node (new Data("HOT", "Seventeen", 154, 2023), null, null));
+		Playlist playlist_2 = new Playlist();
+		playlist_2.addHead(new Node (new Data("Mask Off", "Future", 204, 2017), null, null));
+		playlist_2.addHead(new Node (new Data("Tore Up", "Don Toliver", 126, 2021), null, null));
+		playlist_2.addTail(new Node (new Data("HOT", "Seventeen", 154, 2023), null, null));
 		System.out.println();
 		
-		l2.cetaklist();// ini print l2
-		coba.merge_back(l2);;
+		playlist_2.cetaklist();// ini print l2
+		playlist_1.merge_back(l2);;
 		System.out.println();
 		
-		l2.cetaklist();// hasil merge sama l2
+		playlist_2.cetaklist();// hasil merge sama l2
 		System.out.println();
 		
 		//MENCARI DATA - WEN
 		//MENCARI BERDASARKAN PENYANYI/JUDUL LAGU
-		coba.findData("IU");
-		coba.findData("HOT");
+		playlist_1.findData("IU");
+		playlist_1.findData("HOT");
 		//MENCARI BERDASARKAN DURASI/TAHUN RILIS
-		coba.findData(2020);
-		coba.findData(203);
+		playlist_1.findData(2020);
+		playlist_1.findData(203);
 		
 		//MEMINDAHKAN DATA 1 KE TEMPAT LAIN - WEN
 		System.out.println("\nData sebelum dipindahkan:");
-		coba.cetaklist();
+		playlist_1.cetaklist();
 		//JIKA KEDUA DATA ADA DI DALAM LIST
-		coba.moveData("Mask Off", "Reckless");
+		playlist_1.moveData("Mask Off", "Reckless");
 		System.out.println("\nData setelah dipindahkan:");
-		coba.cetaklist();
+		playlist_1.cetaklist();
 		
 		//JIKA ADA DATA YANG TIDAK ADA DI DALAM LIST
-		coba.moveData("Nxde", "HOT");//NXDE TIDAK ADA DI DALAM LIST
-		coba.moveData("Tore Up", "Give Love");//GIVE LOVE TIDAK ADA DI DALAM LIST
-		coba.moveData("Nxde", "Give Love");//KEDUA DATA TIDAK ADA DI DALAMLIST
+		playlist_1.moveData("Nxde", "HOT");//NXDE TIDAK ADA DI DALAM LIST
+		playlist_1.moveData("Tore Up", "Give Love");//GIVE LOVE TIDAK ADA DI DALAM LIST
+		playlist_1.moveData("Nxde", "Give Love");//KEDUA DATA TIDAK ADA DI DALAMLIST
 		
 		//cetak dari head
-		coba.cetaklist();
+		playlist_1.cetaklist();
 		System.out.println();
 
         // Mengedit judul lagu
         String penyanyiLagu = "Madison Beer";
         String judulBaru = "Make You Mine";
-        coba.editJudulLagu(penyanyiLagu, judulBaru); 
-		coba.playAtFront();
-		coba.play_next();
-        coba.play_prev();
+        playlist_1.editJudulLagu(penyanyiLagu, judulBaru); 
+		playlist_1.playAtFront();
+		playlist_1.play_next();
+        playlist_1.play_prev();
 
         // Cetak daftar lagu setelah diubah
         System.out.println("\nDaftar lagu setelah diubah:");
-        coba.cetaklist();
+        playlist_1.cetaklist();
 	}
 }
 
