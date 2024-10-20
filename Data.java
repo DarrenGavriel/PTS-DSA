@@ -1,3 +1,10 @@
+	/**********************
+	* Author: Vara
+	* Date: 17 - Oktober - 2024
+	* Modified date : 20-Oktober-2024 (by : Vara)
+	* Filename: Data.java
+	* Description: Class Song ini digunakan untuk menampung semua data lagu, seperti judul lagu, penyanyi, lamanya lagu, dan tahun rilis
+	**********************/
 	public class Data { //Semua Kerjain 
 	private String judulLagu, penyanyiLagu; 
 	private int durasiLagu, tahunRilis;
