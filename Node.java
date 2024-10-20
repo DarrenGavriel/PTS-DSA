@@ -1,3 +1,10 @@
+/**********************
+	* Author: Jojo
+	* Date: 15 - Oktober - 2024
+	* Modified date : 20-Oktober-2024 (by : Jojo)
+	* Filename: Node.java
+	* Description: Class Node ini digunakan untuk menampung Node agat dapat digunakan di doubly Linked list
+	**********************/
 public class Node {
 	private Node next, prev;
 	private Data data;
