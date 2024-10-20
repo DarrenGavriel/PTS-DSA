@@ -13,7 +13,7 @@ public class Main {
 		System.out.println("Jordan Theovandy - 23.K1.0018");
 		System.out.println("Darlene Angelina Christy - 23.K1.0041");
 		System.out.println("Indivara Nanda - 23.K1.0063");
-		System.out.println("Gracia Valentine A.M - 23.K3.0014");
+		System.out.println("Gracia Valentine A.M - 23.K3.0014\n");
 
 		
 		Playlist playlist_1 = new Playlist();
