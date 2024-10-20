@@ -93,7 +93,7 @@ public class Playlist {
 			temp = temp.getNext();
 			
 		}	
-		
+	}
 	public void deleteTail() {
 		if (tail == null) {
 			System.out.println("data kosong");
