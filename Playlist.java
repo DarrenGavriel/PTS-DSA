@@ -1,5 +1,3 @@
-//KELAS PLAYLIST
-
 public class Playlist {
 	private Node head, tail; //vara
 	private Node posisi = null; //digunakan untuk mengetahui sampai mana kita memainkan lagu
