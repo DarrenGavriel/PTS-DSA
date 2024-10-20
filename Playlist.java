@@ -1,18 +1,18 @@
-KELAS PLAYLIST
+//KELAS PLAYLIST
 public class Playlist {
 	private Node head, tail, posisi;
 	
 	public void addHead(Node baru){
-        if(head==null){
-            head=baru;
-            tail=baru;
-        }
-        else{
-            baru.setNext(head);
-            head.setPrev(baru);
-            head=baru;
-        }
-    }
+	        if(head==null){
+	            head=baru;
+	            tail=baru;
+	        }
+	        else{
+	            baru.setNext(head);
+	            head.setPrev(baru);
+	            head=baru;
+	        }
+	}
 		
 	public void addMid(Node baru, String setelah){
 		boolean status = true;
@@ -37,7 +37,7 @@ public class Playlist {
 					temp.getNext().setPrev(baru);
 					baru.setPrev(temp);
 					baru.setNext(temp.getNext());
-					temp.setNext(baru);
+				temp.setNext(baru);
 				}
 			}
 		}
@@ -46,7 +46,7 @@ public class Playlist {
 			System.out.println();
 			addHead(baru);
 		}
-    }
+	}
 	public void addTail(Node baru) {
 		if(tail==null) {
 			tail=baru;
@@ -90,8 +90,9 @@ public class Playlist {
 				break;
 			}
 			temp = temp.getNext();
-		}
-	}
+			
+		}	
+		
 	public void deleteTail() {
 		if (tail == null) {
 			System.out.println("data kosong");
@@ -103,6 +104,7 @@ public class Playlist {
 			hapus = null;
 		}
 	}
+		
 	public void hapus_all() {
 		head = null;
 		tail = null;
@@ -117,7 +119,7 @@ public class Playlist {
 		this.tail = l2.tail;
 		l2.head = this.head;
 	}
-	
+		
 	public int hitung() {
 		int jumlah = 0;
 		Node temp = head;
@@ -127,6 +129,7 @@ public class Playlist {
 		}
 		return jumlah;
 	}
+	
 	public void play() {
 		if(hitung() == 0) {
 			System.out.println("Playlist kosong");
@@ -136,27 +139,128 @@ public class Playlist {
 		}
 	}
 
+	public void findData(String data) {
+		int find=0; //digunakan untuk mencari apakah data itu ditemukan dalam list atau tidak, membuat variable baru untuk nantinya dipanggil menggunakan if
+		System.out.printf("Mencari data: " + data + "\n");
+		Node temp=head;
+		while(temp!=null) {
+			if(temp.getSinger()==data || temp.getTitle()==data) { // untuk membandingkan, || artinya OR/ATAU. jika antara singer atau title ada yang sama dengan data
+				find=find+1; //menambahkan isi variabel "find" +1 untuk memberikan indikasi jika data tersebut ada
+				temp.print();
+			}
+			temp=temp.getNext();
+		}
+		if(find==0) { // untuk mencari apakah data itu ada atau tidak, jika ada maka "find" pasti bernilai > 0
+			System.out.println("-------- " + data + " tidak ditemukan");
+		}
+	}
+	
+	public void findData(int durasi) { // penjelasan bagian method ini sama dengan method findData(String data) , hanya saja string diubah ke int
+		System.out.println("Mencari berdasarkan durasi: " + durasi + "\n");
+		int find=0;
+		Node temp=head;
+		while(temp!=null) {
+			if(temp.getDuration()==durasi) {
+				temp.print();
+				find++;
+			}
+			temp=temp.getNext();
+		}
+		if(find==0) {
+			System.out.println("-------- Durasi " + durasi + " tidak ditemukan");
+		}
+	}
+	
+	public void moveData(String movedata, String dataafter) {
+		Node temp=head; 
+		Node dataToMove=null; //membuat Node baru untuk menyimpan sementara 
+		Node afterNode=null; // sama kayak atasnya
+		int checkDataToMove=0;
+		while(temp!=null) {
+			if(temp.getTitle()==movedata){ // jika title itu sama dengan movedata (untuk data yang mau diubah posisinya)
+				System.out.print("Data that will be moved:" + movedata + "\n");
+				dataToMove=temp; //temp (posisi data yang ada di temp, itu dimasukan kedalam dataToMove 
+				checkDataToMove++;
+				break;
+			}
+			else {
+				temp=temp.getNext();
+			}
+		}
+		
+		int checkDataAfter=0;
+		temp=head; // mendeklarasikan temp baru agar isi temp ter-reset kembali ke head awal
+		while(temp!=null) {
+			if(temp.getTitle()==dataafter) {// jika title adalah dataafter(lokasi dimana movedata akan diletakkan setelah dataafter)
+				afterNode=temp; //temp dari posisi title == dataafter akan dimasukkan ke dalam afterNode
+				checkDataAfter++;
+				break;
+			}
+			else {
+				temp=temp.getNext();
+			}
+		}
+		
+		if(checkDataToMove==0 && checkDataAfter==0) {
+			System.out.println("Kedua Data tidak ditemukan");
+			return;
+		}
+		else if(checkDataToMove==0) {
+			System.out.println("Data untuk dipindah tidak ditemukan");
+			return;
+		}
+		else if(checkDataAfter==0) {
+			System.out.println("tempat pindah data tidak ditemukan");
+			return;
+		}
+		
+		if(dataToMove.getPrev()!=null) {//dataToMove adalah data yang mau kita pindah, mengecek apakah sebelum dataToMove ada isinya atau tidak
+			dataToMove.getPrev().setNext(dataToMove.getNext()); // kalau tidak ada, maka dataToMove sebelumnya di set selanjutnya ke lanjutan dataToMove
+		}
+		else {
+			head=dataToMove.getNext(); // jika tidak ada data sebelum dataToMove, maka head akan diperbarui menjadi data setelah dataToMove karena kita akan memindahkan dataToMove
+		}
+		
+		if(dataToMove.getNext()!=null) {//podo karo atase
+			dataToMove.getNext().setPrev(dataToMove.getPrev());
+		}
+		else {
+			tail=dataToMove.getPrev();
+		}
+		
+		dataToMove.setNext(afterNode.getNext());// mengeset data setelah dataToMove menjadi data setelah afterNode 
+		dataToMove.setPrev(afterNode); // kemudian, data sebelum dataToMove di set ke afterNode
+		afterNode.setNext(dataToMove); // bar kui data sakwise afterNode di sambungke karo dataToMove
+		
+		if(afterNode.getNext()!=null) { // after that, we need to find if the next data after afterNode is null or no
+			afterNode.getNext().setPrev(dataToMove); // if it's not null, then we have to set the next data to the previous data of dataToMove
+		}
+		else {
+			tail=dataToMove;//nek ora ono data sakwise afterNode, yo tail e di ganti dadi dataToMove
+		}
+		
+	}
 	public void cetaklist(){ // cetak dari head
-        Node temp = head;
-        System.out.println("HEADNYA:"); 
-        head.cetak();
-        System.out.println("TAILNYA:"); 
-        tail.cetak();
-        System.out.println("\n");
-        while(temp != null){
-            temp.cetak();
-            temp = temp.getNext();
-        }
+	        Node temp = head;
+	        System.out.println("HEADNYA:"); 
+	        head.cetak();
+	        System.out.println("TAILNYA:"); 
+	        tail.cetak();
+	        System.out.println("\n");
+	        while(temp != null){
+	            temp.cetak();
+	            temp = temp.getNext();
+		}
 	}
 	public void cetaklist_akhir(){ // Cetak dari tail
-        Node temp = tail;
-        System.out.println("HEADNYA:"); 
-        head.cetak();
-        System.out.println("TAILNYA:"); 
-        tail.cetak();
-        while(temp != null){
-            temp.cetak();
-            temp = temp.getPrev();
-        }
+	        Node temp = tail;
+	        System.out.println("HEADNYA:"); 
+	        head.cetak();
+	        System.out.println("TAILNYA:"); 
+	        tail.cetak();
+	        while(temp != null){
+	            temp.cetak();
+	            temp = temp.getPrev();
+	        }
 	}
 }
