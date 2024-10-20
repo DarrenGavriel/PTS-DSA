@@ -1,5 +1,5 @@
+package UTS_DSA;
 
-KELAS MAIN
 public class Main {
 
 	public static void main(String[] args) {
@@ -28,5 +28,28 @@ public class Main {
 		
 		l2.cetaklist();// hasil merge sama l2
 		System.out.println();
+		
+		//MENCARI DATA - WEN
+		//MENCARI BERDASARKAN PENYANYI/JUDUL LAGU
+		coba.findData("IU");
+		coba.findData("HOT");
+		//MENCARI BERDASARKAN DURASI/TAHUN RILIS
+		coba.findData(2020);
+		coba.findData(203);
+		
+		//MEMINDAHKAN DATA 1 KE TEMPAT LAIN - WEN
+		System.out.println("\nData sebelum dipindahkan:");
+		coba.cetaklist();
+		//JIKA KEDUA DATA ADA DI DALAM LIST
+		coba.moveData("Mask Off", "Reckless");
+		System.out.println("\nData setelah dipindahkan:");
+		coba.cetaklist();
+		
+		//JIKA ADA DATA YANG TIDAK ADA DI DALAM LIST
+		coba.moveData("Nxde", "HOT");//NXDE TIDAK ADA DI DALAM LIST
+		coba.moveData("Tore Up", "Give Love");//GIVE LOVE TIDAK ADA DI DALAM LIST
+		coba.moveData("Nxde", "Give Love");//KEDUA DATA TIDAK ADA DI DALAMLIST
+		
 	}
 }
+
