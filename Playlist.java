@@ -401,7 +401,7 @@ public class Playlist {
 
 	 */
 	private void playlagu() { 
-		System.out.println("Now Playing "+ posisi.getData().getJudulLagu()+ " by "+posisi.getData().getPenyanyi());
+		System.out.println("Now Playing "+ posisi.getData().getJudulLagu()+ " by "+posisi.getData().getPenyanyiLagu());
 	}
 	public void cetaklist(){ // cetak dari head
 	        Node temp = head;
