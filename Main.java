@@ -28,7 +28,7 @@ public class Main {
 		playlist_1.addHead(new Node(new Data("LILAC", "IU", 214, 2019), null, null));
 		playlist_1.addTail(new Node(new Data("Starlight", "Dave", 212, 2022), null, null));
 		playlist_1.addTail(new Node(new Data("Eight", "IU", 167, 2019), null, null));
-		playlist_1.addMid(new Node(new Data("Reckless", "Madison Beer", 203, 2022), null, null), "Like ");
+		playlist_1.addMid(new Node(new Data("Reckless", "Madison Beer", 203, 2022), null, null), "Like that");
 		playlist_1.addTail(new Node(new Data("Cookie", "NewJeans", 200, 2021), null, null));
 		playlist_1.addMid(new Node(new Data("Celebrity", "IU", 242, 2019), null, null), "Starlight");
         
@@ -60,7 +60,7 @@ public class Main {
 		System.out.println("\nData sebelum dipindahkan:");
 		playlist_1.cetaklist();
 		//JIKA KEDUA DATA ADA DI DALAM LIST
-		playlist_1.moveData("Mask Off", "Reckless");
+		playlist_1.moveData("Mask Off", "");
 		System.out.println("\nData setelah dipindahkan:");
 		playlist_1.cetaklist();
 		
