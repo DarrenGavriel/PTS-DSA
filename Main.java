@@ -34,11 +34,11 @@ public class Main {
 		playlist_2.addTail(new Node (new Data("HOT", "Seventeen", 154, 2023), null, null));
 		System.out.println();
 		
-		playlist_2.cetaklist();// ini print l2
+		playlist_2.cetaklist();// ini print playlist_2
+		//Merge - Darren
 		playlist_1.merge_back(playlist_2);
 		System.out.println();
-		
-		playlist_2.cetaklist();// hasil merge sama l2
+		playlist_1.cetaklist();// hasil merge dengan playlist_2
 		System.out.println();
 		
 		//MENCARI DATA - WEN
@@ -74,7 +74,7 @@ public class Main {
         System.out.println("\nDaftar lagu setelah diubah:");
         playlist_1.cetaklist();
 	System.out.println();
-        
+        // Play musik - Darren
         System.out.println("Kita akan play lagu dari head");
         System.out.println();
         playlist_1.playAtFront();
