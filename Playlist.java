@@ -157,14 +157,14 @@ public class Playlist {
 				return;//langsung keluar, dan metode tidak berjalan
 			}
 			else {
-				if(tail.getData().getJudul().equals(setelah)) {//mengecek apakah bagian akhir/tail dari playlist sekarang ini itu cocok dengan parameter setelah 
+				if(tail.getData().getJudulLagu().equals(setelah)) {//mengecek apakah bagian akhir/tail dari playlist sekarang ini itu cocok dengan parameter setelah 
 					merge_back(l2);//dikirim ke method merge_back, dan di merge pada ke bagian belakang
 				}
 				else {
 					//mencari judul yang sesuai dengan parameter setelah
 					Node temp = head;
 					while(temp != null) {
-						if(temp.getData().getJudul().equals(setelah)) {
+						if(temp.getData().getJudulLagu().equals(setelah)) {
 							break;//lagu ketemu dan keluar dari while loop
 						}
 						temp = temp.getNext();
@@ -401,7 +401,7 @@ public class Playlist {
 
 	 */
 	private void playlagu() { 
-		System.out.println("Now Playing "+ posisi.getData().getJudul()+ " by "+posisi.getData().getPenyanyi());
+		System.out.println("Now Playing "+ posisi.getData().getJudulLagu()+ " by "+posisi.getData().getPenyanyi());
 	}
 	public void cetaklist(){ // cetak dari head
 	        Node temp = head;
