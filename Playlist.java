@@ -1,4 +1,5 @@
 //KELAS PLAYLIST
+
 public class Playlist {
 	private Node head, tail;
 	private Node posisi = null; //digunakan untuk mengetahui sampai mana kita memainkan lagu
@@ -91,9 +92,9 @@ public class Playlist {
 				break;
 			}
 			temp = temp.getNext();
-			
+			}
 		}	
-	}
+		
 	public void deleteTail() {
 		if (tail == null) {
 			System.out.println("data kosong");
@@ -105,7 +106,32 @@ public class Playlist {
 			hapus = null;
 		}
 	}
+
+	    //edit
+		public void editJudulLagu(String penyanyiLagu, String judulBaru) { //harus bikin method baru buat edit judul lagunya,methodnya untuk edit judul lagu ini berdasarkan nama penyanyi
+			Node temp = head; // ini memulai pencarian judul lagu yang mau di ubah,carinya di mulai dari head
+			//variabel yang nandain nanti ketemu apa engga penyanyi nya
+			int found = 0; // 0 itu belum ketemu,kalau 1 udh ketemu
 		
+			// Loop mencari node yang sesuai dengan nama penyanyi
+			while (temp != null) { //bakal jalan terus kalau masih ada node yang harus di cek
+				//mengecek jika nama penyanyi pada node yang saat ini cocok apa engga sama parameter "penyanyiLagu"
+				if (temp.getData().getPenyanyiLagu().equals(penyanyiLagu)) {
+					// kalo dah ketemu penyanyinya nanti judulnya di ubah jadi "judulBaru"
+					temp.getData().setJudulLagu(judulBaru);
+					found ++; // nandain kalo penyanyinya dah ketemu
+					break; //Loop nya berhenti/keluar dari loop karena penyanyinya sudah ketemu
+				}
+				//pindah ke node berikutnya di playlist
+				temp = temp.getNext();
+			}
+		
+			// ini kalo g ketemu nanti di kasi keterangan
+			if (found==0) {
+				//ini keterangan yang bakal muncul kalau penyanyinya yg di cari itu ga ketemu
+				System.out.println("Lagu dari penyanyi " + penyanyiLagu + " tidak ditemukan.");
+			}
+		}
 	/*
 	* method's function = untuk menyatukan playlist dengan nama l2 pada bagian akhir playlist sekarang ini
 	• [ Created date: 18 Oktober 2024]
