@@ -60,7 +60,7 @@ public class Main {
 		System.out.println("\nData sebelum dipindahkan:");
 		playlist_1.cetaklist();
 		//JIKA KEDUA DATA ADA DI DALAM LIST
-		playlist_1.moveData("Mask Off", "");
+		playlist_1.moveData("Mask Off", "Like that");
 		System.out.println("\nData setelah dipindahkan:");
 		playlist_1.cetaklist();
 		
