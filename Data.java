@@ -1,11 +1,11 @@
 KELAS DATA
-
-	public class Data { //vara
+	//Semua kerjain
+	public class Data { 
 	private String judulLagu, penyanyiLagu; 
-	private int durasiLagu, tahunRilis; 
-	public Data() {
+	private int durasiLagu, tahunRilis;
+	public Data() 
 
-	}
+	
 	Data (String judul, String penyanyi, int durasi, int tahun){ 
 		setJudulLagu(judul);
 		setDurasiLagu(durasi);
