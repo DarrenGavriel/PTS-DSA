@@ -13,7 +13,7 @@ public class Main {
         System.out.println(" ~ Playlist Lagu ~ ");
         
         // Membuat format header
-        String headerFormat = "| %-15s | %-15s | %-6s | %-5s |%n"; //blm paham,blm di jelasin jojo
+        String headerFormat = "| %-15s | %-15s | %-6s | %-5s |%n"; 
         System.out.format(headerFormat, "Judul Lagu", "Penyanyi", "Tahun", "Durasi"); 
                 //ADDHEAD & ADD TAIL -VARA
 		playlist_1.addHead(new Node(new Data("Like that", "Metro Boomin", 267, 2020), null, null));
