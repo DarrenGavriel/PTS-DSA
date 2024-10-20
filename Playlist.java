@@ -21,34 +21,39 @@ public class Playlist {
 	            head=baru;
 	        }
 	}
-		
+
+	/*
+	* method's function = untuk menambahkan node ditengah tengah linkedlist
+	• [ Created date: 18 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Jordan Theovandy ) ]
+
+	 */
 	public void addMid(Node baru, String setelah){
-		boolean status = true;
-		if (head == null) {
+		if (head == null) { //jika head nya kosong maka akan lgsg diarahkan ke addHead
 			addHead(baru);
 		}
+		//menambahkan middle setelah tail atau membuat tail baru
+		else if(tail.getData().getJudulLagu().equalsIgnoreCase(setelah)){
+			addTail(baru);
+		}
 		else {
-			if(tail.getData().getJudulLagu().equals(setelah)) {
-				addTail(baru);
-				status = false;
+			Node temp = head; //head akan dimasukan ke node temp
+			while(temp != null) { //kemudian akan dilakukan while selagi temp tidak kosong
+				if(temp.getData().getJudulLagu().equalsIgnoreCase(setelah)) { //kola judul lagu yang berada di temp sama dengan setelah
+					break; //maka akan langsung dibreak dan keluar dari loooping while
+				}
+				temp = temp.getNext(); 
 			}
-			else {
-				Node temp = head;
-				while(temp != null) {
-					if(temp.getData().getJudulLagu().equals(setelah)) {
-						status = false;
-						break;
-					}
-					temp = temp.getNext();
-				}
-				if (temp != null) {
-					temp.getNext().setPrev(baru);
-					baru.setPrev(temp);
-					baru.setNext(temp.getNext());
-				temp.setNext(baru);
-				}
+			if (temp != null && temp.getNext() != null) { //jika temp tidak kosong dan node stlh temp tidak kosong juga
+				temp.getNext().setPrev(baru); //maka node yang setelah temp referencesnya akan disambungkan ke node baru
+				baru.setPrev(temp); //kemudian node baru akan di references kan ke node temp sbg prev
+				baru.setNext(temp.getNext()); //node baru akan di next references ke node yang berada di depan node temp
+				temp.setNext(baru); //kemudian next references node temp akan disambungkan kepada node baru
+			} else{ //jika itu semua tidak berjalan dan tidak ditemukan maka node yang ingin digunakan 'setelah' akan di print tidak ditemukan 
+				System.out.println("Node dengan nama '" + setelah + "' tidak ditemukan");
 			}
 		}
+	}
 		if (status) {
 			System.out.println(setelah + " Judul tidak ditemukan, akan ditambahkan di depan");
 			System.out.println();
@@ -77,29 +82,42 @@ public class Playlist {
 			hapus = null;
 		}
 	}
+	/*
+	* method's function = untuk menghapus data yang ditengah
+	• [ Created date: 15 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Jordan Theovandy ) ]
+
+	 */
 	public void deleteMid(String judulLagu) {
-		Node temp = head;
-		if (head.getData().getJudulLagu().equals(judulLagu)) {
+		// Jika head yang dihapus
+		if (head.getData().getJudulLagu().equalsIgnoreCase(judulLagu)) {
 			deleteHead();
-		}
-		else if(tail.getData().getJudulLagu().equals(judulLagu)) {
+			return; // Setelah menghapus, keluar dari metode
+		} 
+		// Jika tail yang dihapus
+		if (tail != null && tail.getData().getJudulLagu().equalsIgnoreCase(judulLagu)) {
 			deleteTail();
+			return; // Setelah menghapus, keluar dari metode
 		}
-		while (temp != null) {
-			if(temp.getNext() == null) {
-				System.out.println("data rk nemu");
-				break;
+		
+		Node temp = head;
+		// Mencari node yang memiliki data dengan nama penyanyi
+		while (temp != null && temp.getNext() != null) { //jika temp tidak kosong dan node setelah temp juga tidak kosong while akan dijalankan
+			if (temp.getNext().getData().getJudulLagu().equalsIgnoreCase(judulLagu)) { //jika data nama penyanyi pada node stlh temp == judulLagu
+				Node hapus = temp.getNext(); // Node yang akan dihapus
+				temp.setNext(hapus.getNext()); // Menghubungkan node sebelumnya ke node setelah yang dihapus
+				// Jika node berikutnya bukan null, update prev pointer-nya
+				if (hapus.getNext() != null) { //jika node stlh hapus tidak kosong
+					hapus.getNext().setPrev(temp); //maka node setelah hapus references nya akan disetting ke temp(node sebelum hapus)
+				}
+				hapus = null; // Menghapus referensi node
+				return; // Node berhasil dihapus, keluar dari method
 			}
-			else if (temp.getNext().getData().getJudulLagu().equals(judulLagu)) {
-				Node hapus = temp.getNext();
-				temp.setNext(hapus.getNext());
-				hapus.getNext().setPrev(temp);
-				hapus = null;
-				break;
-			}
-			temp = temp.getNext();
-			}
-		}	
+			temp = temp.getNext(); //jika conditions if diatas tidak dijalankan maka temp akan dimajukan satu dengan mengisi temp dengan temp.getNext();
+		}
+		// Jika data tidak ditemukan setelah loop
+		System.out.println("Node yang ingin dihapus dengan nama '" + judulLagu + "' tidak ditemukan");
+	}	
 		
 	public void deleteTail() { //vara
 		if (tail == null) {
@@ -223,7 +241,7 @@ public class Playlist {
 	/*
 	* method's function = untuk menghitung berapa jumlah lagu yang terdapat pada suatu playlist
 	• [ Created date: 18 Oktober 2024]
-	• [ Modified date : 20 Oktober 2024(by : Njo, Darren Gavriel Vankalino Santoso ) ]
+	• [ Modified date : 20 Oktober 2024(by : Jordan Theovandy ) ]
 
 	 */
 	public int hitung() {
