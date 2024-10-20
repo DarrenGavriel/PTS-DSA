@@ -10,15 +10,15 @@ public class Playlist {
 	private Node head, tail; //vara
 	private Node posisi = null; //digunakan untuk mengetahui sampai mana kita memainkan lagu
 	
-	public void addHead(Node baru){ //vara
-	        if(head==null){
+	public void addHead(Node baru){ //untuk nambahin node yg baru (baru) ke head, sebagai node yg pertama -vara
+	        if(head==null){ //kalau headnya kosong, nanti node yang baru akan menjadi head dan tail
 	            head=baru;
 	            tail=baru;
 	        }
-	        else{
+	        else{ //kalau headnya ga kosong(udah ada isinya) nanti node baru bakal di set ke node yg skrg(node baru jd head)-vara
 	            baru.setNext(head);
 	            head.setPrev(baru);
-	            head=baru;
+	            head=baru;//node baru jadi head-vara
 	        }
 	}
 
@@ -54,26 +54,26 @@ public class Playlist {
 			}
 		}
 	}
-	public void addTail(Node baru) { //vara
-		if(tail==null) {
+	public void addTail(Node baru) { //untuk nambahin node yg baru (baru) ke tail, sebagai node yg terakhir -vara
+		if(tail==null) { //kalau tailnya kosong, nanti node baru akan menjadi tail dan head
 			tail=baru;
 			head=baru;
 		}
-		else {
+		else { //kalau tailnya tdk kosong node baru akan di set ke tail terlebih dahulu, kalau udh nyambung baru tailnya di sambung ke node yg baru- vara
 			baru.setPrev(tail);
 			tail.setNext(baru);
-			tail=baru;
+			tail=baru; //jd skrg tailnya adalah node yg baru-vara
 		}
 	}
-	public void deleteHead() { //vara
-		if (head == null) {
-			System.out.println("Data kosong");
+	public void deleteHead() { //hapus head- vara
+		if (head == null) { //kalau headnya kosong
+			System.out.println("Data kosong"); //nanti bakal ke cetak "Data kosong
 		}
-		else {
-			Node hapus = head;
-			head = head.getNext();
-			head.setPrev(null);
-			hapus = null;
+		else {  //kalau headnya ga kosong
+			Node hapus = head; //headnya dimasukin ke hapus
+			head = head.getNext(); //headnya jadi node yg setelah head
+			head.setPrev(null); // sambungannya antara head yg sblmny di putusin
+			hapus = null; // krn head yg sblmnya dah masuk di hapus, lalu kita jdiin null biar ilang
 		}
 	}
 	/*
@@ -113,15 +113,15 @@ public class Playlist {
 		System.out.println("Node yang ingin dihapus dengan nama '" + judulLagu + "' tidak ditemukan");
 	}	
 		
-	public void deleteTail() { //vara
-		if (tail == null) {
+	public void deleteTail() { //hapus tail- vara
+		if (tail == null) { //jika tailnya kosong nanti ke cetak "data kososng"
 			System.out.println("data kosong");
 		}
 		else {
-			Node hapus = tail;
-			tail = tail.getPrev();
-			tail.setNext(null);
-			hapus = null;
+			Node hapus = tail; //tail dimasukin ke hapus dulu (tail jd hapus)
+			tail = tail.getPrev(); // tailnya udh pindah ke data sblm tail(krn di get prev)
+			tail.setNext(null); //sambungan antara data sblm tail(hapus) dgn  di putus
+			hapus = null; // krn tail yg sblmnya dah masuk di hapus(tail jd hapus), lalu hapus kita jdiin null biar ilang
 		}
 	}
 
@@ -448,26 +448,26 @@ public class Playlist {
 		System.out.println("Now Playing "+ posisi.getData().getJudulLagu()+ " by "+posisi.getData().getPenyanyiLagu());
 	}
 	public void cetaklist(){ // cetak dari head (vara)
-	        Node temp = head;
+	        Node temp = head; //tempny di mulai dr head
 	        System.out.println("HEADNYA:"); 
-	        head.cetak();
+	        head.cetak(); //cetak head
 	        System.out.println("TAILNYA:"); 
-	        tail.cetak();
+	        tail.cetak(); //cetak tail
 	        System.out.println("\n");
-	        while(temp != null){
-	            temp.cetak();
-	            temp = temp.getNext();
+	        while(temp != null){  //kalau node tempnya ga kosong
+	            temp.cetak(); //bakal cetak temp yg dr head
+	            temp = temp.getNext(); //temp nya bakal berubah jd node yg setelah temp/temp selanjutnya
 		}
 	}
 	public void cetaklist_akhir(){ // Cetak dari tail (vara)
 	        Node temp = tail;
 	        System.out.println("HEADNYA:"); 
-	        head.cetak();
+	        head.cetak(); //cetak head
 	        System.out.println("TAILNYA:"); 
-	        tail.cetak();
-	        while(temp != null){
-	            temp.cetak();
-	            temp = temp.getPrev();
+	        tail.cetak(); //cetak tail
+	        while(temp != null){ //kalau node tempnya ga kosong
+	            temp.cetak(); //bakal cetak temp yg dr tail
+	            temp = temp.getPrev(); //temp nya bakal berubah jd temp yg sblm temp yg skrg
 	        }
 	}
 }
