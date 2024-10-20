@@ -1,5 +1,6 @@
 KELAS DATA
-public class Data {
+
+	public class Data {
 	private String judulLagu, penyanyiLagu;
 	private int durasiLagu, tahunRilis;
 	public Data() {
@@ -36,7 +37,6 @@ public class Data {
 		return tahunRilis;
 	}
 	public void cetakData() {
-        System.out.println(judulLagu + ", "+ penyanyiLagu+", "+ durasiLagu +" ,"+ tahunRilis); 
+        System.out.printf("| %-15s | %-15s | %-6d | %-5d detik |%n", getJudulLagu(), getPenyanyiLagu(), getTahunRilis(), getDurasiLagu()); 
     }
 }
-
