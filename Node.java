@@ -1,15 +1,18 @@
 public class Node {
 	private Node next, prev;
 	private Data data;
-	public Node() {
-		data = null;
-		next = null;
-		prev = null;
+	//konstruktor node di null kan
+	public Node(){
+		setData(null);
+		setNext(null);
+		setPrev(null);
 	}
-	public Node(Data d, Node n, Node p) {
-		next = n;
-		prev = p;
-		data = d;
+
+	//menambahkan data, next, prev dalam konstruktor node untuk dikirimkan ke setter getter
+	public Node(Data data, Node next, Node prev) {
+		setData(data);
+		setNext(next);
+		setPrev(prev);
 	}
 	public void setNext(Node n) {
 		next = n;
