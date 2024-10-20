@@ -54,12 +54,6 @@ public class Playlist {
 			}
 		}
 	}
-		if (status) {
-			System.out.println(setelah + " Judul tidak ditemukan, akan ditambahkan di depan");
-			System.out.println();
-			addHead(baru);
-		}
-	}
 	public void addTail(Node baru) { //vara
 		if(tail==null) {
 			tail=baru;
