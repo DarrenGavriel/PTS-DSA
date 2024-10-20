@@ -8,10 +8,8 @@
 	public class Data { //Semua Kerjain 
 	private String judulLagu, penyanyiLagu; 
 	private int durasiLagu, tahunRilis;
-	public Data() 
-
 	
-	Data (String judul, String penyanyi, int durasi, int tahun){ 
+	public Data (String judul, String penyanyi, int durasi, int tahun){ 
 		setJudulLagu(judul);
 		setDurasiLagu(durasi);
 		setPenyanyiLagu(penyanyi);
