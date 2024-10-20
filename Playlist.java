@@ -1,3 +1,11 @@
+/**********************
+* Author: Darren, Jojo, Vara, Wen, Grace
+* Date: 15-October-2024
+* Modified date : 20-October-2024 (by : Darren)
+* Filename: Playlist.java
+* Description: Pada class playlist, terdapat kumpulan method untuk menjalankan doubly linked list, dan ada juga method untuk play lagu
+**********************/
+
 public class Playlist {
 	private Node head, tail; //vara
 	private Node posisi = null; //digunakan untuk mengetahui sampai mana kita memainkan lagu
