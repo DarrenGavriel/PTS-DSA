@@ -8,12 +8,12 @@
 
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("ANGGOTA KELOMPOK:\n");
-		System.out.println("Njo, Darren Gavriel Vankalino Santoso - 23.K1.0011\n");
-		System.out.println("Jordan Theovandy - 23.K1.0018\n");
-		System.out.println("Darlene Angelina Christy - 23.K1.0041\n");
-		System.out.println("Indivara Nanda - 23.K1.0063\n");
-		System.out.println("Gracia Valentine A.M - 23.K3.0014\n");
+		System.out.println("ANGGOTA KELOMPOK:");
+		System.out.println("Njo, Darren Gavriel Vankalino Santoso - 23.K1.0011");
+		System.out.println("Jordan Theovandy - 23.K1.0018");
+		System.out.println("Darlene Angelina Christy - 23.K1.0041");
+		System.out.println("Indivara Nanda - 23.K1.0063");
+		System.out.println("Gracia Valentine A.M - 23.K3.0014");
 
 		
 		Playlist playlist_1 = new Playlist();
