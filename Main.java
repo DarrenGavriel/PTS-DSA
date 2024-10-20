@@ -27,7 +27,7 @@ public class Main {
 		System.out.println();
 		
 		playlist_2.cetaklist();// ini print l2
-		playlist_1.merge_back(l2);;
+		playlist_1.merge_back(playlist_2);
 		System.out.println();
 		
 		playlist_2.cetaklist();// hasil merge sama l2
