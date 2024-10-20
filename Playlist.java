@@ -274,15 +274,20 @@ public class Playlist {
 		}
 	}
 		
-	
+	/*
+	* method's function = Untuk mencari lagu yang ada di dalam playlist dengan tipe data String (judul lagu dan penyanyi)
+	• [ Created date: 17 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Darlene Angelina Christy ) ]
+
+	 */
 	public void findData(String data) {
 		int find=0; //digunakan untuk mencari apakah data itu ditemukan dalam list atau tidak, membuat variable baru untuk nantinya dipanggil menggunakan if
-		System.out.printf("Mencari data: " + data + "\n");
+		System.out.printf("\nMencari data: " + data + "\n");
 		Node temp=head;
 		while(temp!=null) {
-			if(temp.getSinger()==data || temp.getTitle()==data) { // untuk membandingkan, || artinya OR/ATAU. jika antara singer atau title ada yang sama dengan data
-				find=find+1; //menambahkan isi variabel "find" +1 untuk memberikan indikasi jika data tersebut ada
-				temp.print();
+			if(temp.getData().getJudulLagu().equals(data) || temp.getData().getPenyanyiLagu().equals(data)) { // untuk membandingkan, || artinya OR/ATAU. jika antara singer atau title ada yang sama dengan data
+				temp.cetak();
+				find++; //menambahkan isi variabel "find" +1 untuk memberikan indikasi jika data tersebut ada
 			}
 			temp=temp.getNext();
 		}
@@ -291,63 +296,76 @@ public class Playlist {
 		}
 	}
 	
-	public void findData(int durasi) { // penjelasan bagian method ini sama dengan method findData(String data) , hanya saja string diubah ke int
-		System.out.println("Mencari berdasarkan durasi: " + durasi + "\n");
+	/*
+	* method's function = Untuk mencari lagu yang ada di dalam playlist dengan tipe data int (Durasi dan Tahun Rilis Lagu)
+	• [ Created date: 17 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Darlene Angelina Christy ) ]
+
+	 */
+	public void findData(int data) { // penjelasan bagian method ini sama dengan method findData(String data) , hanya saja string diubah ke int
+		System.out.println("\nMencari berdasarkan tahun/durasi: " + data);
 		int find=0;
 		Node temp=head;
 		while(temp!=null) {
-			if(temp.getDuration()==durasi) {
-				temp.print();
+			if(temp.getData().getDurasiLagu()==data || temp.getData().getTahunRilis()==data) { // disini tidak menggunakan equals() karena tipe datanya merupakan int.
+				temp.cetak();
 				find++;
 			}
 			temp=temp.getNext();
 		}
 		if(find==0) {
-			System.out.println("-------- Durasi " + durasi + " tidak ditemukan");
+			System.out.println("-------- Durasi " + data + " tidak ditemukan");
 		}
 	}
-	
-	public void moveData(String movedata, String dataafter) {
+
+	/*
+	* method's function = Untuk memindahkan posisi data ke posisi yang berbeda
+	• [ Created date: 18 Oktober 2024]
+	• [ Modified date : 20 Oktober 2024(by : Darlene Angelina Christy ) ]
+
+	 */
+	public void moveData(String movedata, String dataafter) { //2 parameter, yaitu String movedata dan String dataafter. movedata adalah data yang ingin kita pindah, dataafter adalah lokasi dimana data itu akan dipindahkan setelah
 		Node temp=head; 
 		Node dataToMove=null; //membuat Node baru untuk menyimpan sementara 
 		Node afterNode=null; // sama kayak atasnya
-		int checkDataToMove=0;
+		int checkDataToMove=0; // untuk mengecek apakah data itu ada di dalam list atau tidak
 		while(temp!=null) {
-			if(temp.getTitle()==movedata){ // jika title itu sama dengan movedata (untuk data yang mau diubah posisinya)
-				System.out.print("Data that will be moved:" + movedata + "\n");
+			if(temp.getData().getJudulLagu().equals(movedata)){ // jika title itu sama dengan movedata (untuk data yang mau diubah posisinya)
+				System.out.print("\nData yang ingin dipindah: " + movedata);
 				dataToMove=temp; //temp (posisi data yang ada di temp, itu dimasukan kedalam dataToMove 
-				checkDataToMove++;
-				break;
+				checkDataToMove++; //pada bagian ini, hanya untuk memastikan apakah data itu ada di dalam list atau tidak, jika ada di dalam list maka pasti akan bertambah 1 pada variabel checkDataToMove
+				break; // break digunakan untuk menghentikan pengulangan dari while(), agar kode tidak berjalan terus sampai akhir ketika data yang dicari sudah ketemu
 			}
 			else {
-				temp=temp.getNext();
+				temp=temp.getNext(); //menggeser lokasi temp untuk mencari data
 			}
 		}
 		
-		int checkDataAfter=0;
+		int checkDataAfter=0; // sama seperti checkDataToMove, apakah DataAfter itu ada di dalam list atau tidak
 		temp=head; // mendeklarasikan temp baru agar isi temp ter-reset kembali ke head awal
 		while(temp!=null) {
-			if(temp.getTitle()==dataafter) {// jika title adalah dataafter(lokasi dimana movedata akan diletakkan setelah dataafter)
+			if(temp.getData().getJudulLagu().equals(dataafter)) {// jika title adalah dataafter(lokasi dimana movedata akan diletakkan setelah dataafter)
+				System.out.print("\nLetak Data Pindah Setelah: " + dataafter);
 				afterNode=temp; //temp dari posisi title == dataafter akan dimasukkan ke dalam afterNode
 				checkDataAfter++;
-				break;
+				break; // menghentikan pengulangan
 			}
 			else {
-				temp=temp.getNext();
+				temp=temp.getNext(); //menggeser lokasi temp
 			}
 		}
 		
-		if(checkDataToMove==0 && checkDataAfter==0) {
-			System.out.println("Kedua Data tidak ditemukan");
-			return;
+		if(checkDataToMove==0 && checkDataAfter==0) { // jika kedua data tidak ada (artinya kedua variabel itu valuenya 0, maka akan muncul tulisan kedua data tidak ditemukan
+			System.out.println("\nKedua Judul Lagu: " + movedata + " & " + dataafter + " tidak ditemukan");
+			return; // return ini digunakan untuk menghentikan kode apapun yang ada di bawah bagian if, jadi jika memang tidak ada data maka akan langsung berhenti semuanya(untuk menghindari error)
 		}
-		else if(checkDataToMove==0) {
-			System.out.println("Data untuk dipindah tidak ditemukan");
-			return;
+		else if(checkDataToMove==0) { // jika data yang ingin dipindah tidak ada alias value 0 
+			System.out.println("\nJudul Lagu "+ movedata + " untuk dipindah tidak ditemukan");
+			return; // menghentikan proses di dalam method ini, agar tidak ada error
 		}
-		else if(checkDataAfter==0) {
-			System.out.println("tempat pindah data tidak ditemukan");
-			return;
+		else if(checkDataAfter==0) { //jika yang tidak ada adalah letak data yang mau dipindah
+			System.out.println("\nTempat pindah Judul Lagu setelah: " + dataafter + " tidak ditemukan");
+			return; // menghentikan proses di dalam method ini, agar tidak ada error
 		}
 		
 		if(dataToMove.getPrev()!=null) {//dataToMove adalah data yang mau kita pindah, mengecek apakah sebelum dataToMove ada isinya atau tidak
@@ -357,25 +375,25 @@ public class Playlist {
 			head=dataToMove.getNext(); // jika tidak ada data sebelum dataToMove, maka head akan diperbarui menjadi data setelah dataToMove karena kita akan memindahkan dataToMove
 		}
 		
-		if(dataToMove.getNext()!=null) {//podo karo atase
+		if(dataToMove.getNext()!=null) {//sama seperti if(dataToMove.getPrev) , jika getNext nya tidak sama dengan null maka kita harus menghubungkan getnext ke getprev dari dataToMove
 			dataToMove.getNext().setPrev(dataToMove.getPrev());
 		}
 		else {
-			tail=dataToMove.getPrev();
+			tail=dataToMove.getPrev(); // jika getNext nya adalah null, maka tail diubah menjadi getPrev dari dataToMove
 		}
 		
 		dataToMove.setNext(afterNode.getNext());// mengeset data setelah dataToMove menjadi data setelah afterNode 
 		dataToMove.setPrev(afterNode); // kemudian, data sebelum dataToMove di set ke afterNode
-		afterNode.setNext(dataToMove); // bar kui data sakwise afterNode di sambungke karo dataToMove
+		afterNode.setNext(dataToMove); // setNext dari afterNode harus di set ke dataToMove 
 		
-		if(afterNode.getNext()!=null) { // after that, we need to find if the next data after afterNode is null or no
-			afterNode.getNext().setPrev(dataToMove); // if it's not null, then we have to set the next data to the previous data of dataToMove
+		if(afterNode.getNext()!=null) { // mengecek apakah getNext dari afterNode null atau tidak
+			afterNode.getNext().setPrev(dataToMove); //jika tidak null, maka kita setPrev dari getNext afterNode ini menjadi dataToMove
 		}
 		else {
-			tail=dataToMove;//nek ora ono data sakwise afterNode, yo tail e di ganti dadi dataToMove
+			tail=dataToMove;//jika getNext afterNode itu null, berarti tail akan diubah menjadi dataToMove, alias dataToMove akan menjadi tail baru
 		}
-		
 	}
+	
 	/*
 	* method's function = untuk menampilkan lagu yang sedang diputar
 	• [ Created date: 19 Oktober 2024]
