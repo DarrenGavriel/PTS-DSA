@@ -410,8 +410,8 @@ public class Playlist {
 		dataToMove.setPrev(afterNode); // kemudian, data sebelum dataToMove di set ke afterNode
 		afterNode.setNext(dataToMove); // setNext dari afterNode harus di set ke dataToMove 
 		
-		if(afterNode.getNext()!=null) { // mengecek apakah getNext dari afterNode null atau tidak
-			afterNode.getNext().setPrev(dataToMove); //jika tidak null, maka kita setPrev dari getNext afterNode ini menjadi dataToMove
+		if(dataToMove.getNext()!=null) { // mengecek apakah getNext dari afterNode null atau tidak
+			dataToMove.getNext().setPrev(dataToMove); //jika tidak null, maka kita setPrev dari getNext afterNode ini menjadi dataToMove
 		}
 		else {
 			tail=dataToMove;//jika getNext afterNode itu null, berarti tail akan diubah menjadi dataToMove, alias dataToMove akan menjadi tail baru
