@@ -61,14 +61,27 @@ public class Main {
         // Mengedit judul lagu
         String penyanyiLagu = "Madison Beer";
         String judulBaru = "Make You Mine";
-        playlist_1.editJudulLagu(penyanyiLagu, judulBaru); 
-		playlist_1.playAtFront();
-		playlist_1.play_next();
-        playlist_1.play_prev();
 
         // Cetak daftar lagu setelah diubah
         System.out.println("\nDaftar lagu setelah diubah:");
         playlist_1.cetaklist();
+	System.out.println();
+        
+        System.out.println("Kita akan play lagu dari head");
+        System.out.println();
+        playlist_1.playAtFront();
+	playlist_1.play_next();
+	playlist_1.play_next();
+        playlist_1.play_prev();
+        System.out.println();
+	
+        System.out.println("kita akan play lagu dari tail");
+        System.out.println();
+        playlist_1.playAtLast();
+        playlist_1.play_prev();
+        playlist_1.play_prev();
+        playlist_1.play_prev();
+        playlist_1.play_next();
 	}
 }
 
