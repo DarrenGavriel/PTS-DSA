@@ -9,7 +9,7 @@ public class Main {
         // Membuat format header
         String headerFormat = "| %-15s | %-15s | %-6s | %-5s |%n"; //blm paham,blm di jelasin jojo
         System.out.format(headerFormat, "Judul Lagu", "Penyanyi", "Tahun", "Durasi"); 
-        
+                //ADDHEAD & ADD TAIL -VARA
 		coba.addHead(new Node(new Data("Like that", "Metro Boomin", 267, 2020), null, null));
 		coba.addHead(new Node(new Data("Superhero", "Metro Boomin", 182, 2021), null, null));
 		coba.addHead(new Node(new Data("LILAC", "IU", 214, 2019), null, null));
