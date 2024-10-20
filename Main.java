@@ -7,14 +7,21 @@
 **********************/
 
 public class Main {
-
 	public static void main(String[] args) {
-	Playlist playlist_1 = new Playlist();
-        System.out.println(" ~ Playlist Lagu ~ ");
+		System.out.println("ANGGOTA KELOMPOK:\n");
+		System.out.println("Njo, Darren Gavriel Vankalino Santoso - 23.K1.0011\n");
+		System.out.println("Jordan Theovandy - 23.K1.0018\n");
+		System.out.println("Darlene Angelina Christy - 23.K1.0041\n");
+		System.out.println("Indivara Nanda - 23.K1.0063\n");
+		System.out.println("Gracia Valentine A.M - 23.K3.0014\n");
+
+		
+		Playlist playlist_1 = new Playlist();
+        	System.out.println(" ~ Playlist Lagu ~ ");
         
-        // Membuat format header
-        String headerFormat = "| %-15s | %-15s | %-6s | %-5s |%n"; 
-        System.out.format(headerFormat, "Judul Lagu", "Penyanyi", "Tahun", "Durasi"); 
+       		// Membuat format header
+        	String headerFormat = "| %-15s | %-15s | %-6s | %-5s |%n"; 
+        	System.out.format(headerFormat, "Judul Lagu", "Penyanyi", "Tahun", "Durasi"); 
                 //ADDHEAD & ADD TAIL -VARA
 		playlist_1.addHead(new Node(new Data("Like that", "Metro Boomin", 267, 2020), null, null));
 		playlist_1.addHead(new Node(new Data("Superhero", "Metro Boomin", 182, 2021), null, null));
