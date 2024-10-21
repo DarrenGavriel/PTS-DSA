@@ -10,15 +10,15 @@ public class Playlist {
 	private Node head, tail; //vara
 	private Node posisi = null; //digunakan untuk mengetahui sampai mana kita memainkan lagu
 	
-	public void addHead(Node baru){ //untuk nambahin node yg baru (baru) ke head, sebagai node yg pertama -vara
-	        if(head==null){ //kalau headnya kosong, nanti node yang baru akan menjadi head dan tail
+	public void addHead(Node baru){ //untuk nambahin node yg baru (baru) ke head, sebagai node yg pertama. kalau headnya kosong, nanti node yang baru akan menjadi head dan tail
+	        if(head==null){ 
 	            head=baru;
 	            tail=baru;
 	        }
-	        else{ //kalau headnya ga kosong(udah ada isinya) nanti node baru bakal di set ke node yg skrg(node baru jd head)-vara
+	        else{ //kalau headnya ga kosong(udah ada isinya) nanti node baru bakal di set ke node yg skrg(node baru jd head), node baru jadi head-vara
 	            baru.setNext(head);
 	            head.setPrev(baru);
-	            head=baru;//node baru jadi head-vara
+	            head=baru;
 	        }
 	}
 
@@ -54,26 +54,26 @@ public class Playlist {
 			}
 		}
 	}
-	public void addTail(Node baru) { //untuk nambahin node yg baru (baru) ke tail, sebagai node yg terakhir -vara
-		if(tail==null) { //kalau tailnya kosong, nanti node baru akan menjadi tail dan head
+	public void addTail(Node baru) { //untuk nambahin node yg baru (baru) ke tail, sebagai node yg terakhir, kalau tailnya kosong, nanti node baru akan menjadi tail dan head -vara
+		if(tail==null) { 
 			tail=baru;
 			head=baru;
 		}
-		else { //kalau tailnya tdk kosong node baru akan di set ke tail terlebih dahulu, kalau udh nyambung baru tailnya di sambung ke node yg baru- vara
+		else { //kalau tailnya tdk kosong node baru akan di set ke tail terlebih dahulu, kalau udh nyambung baru tailnya di sambung ke node yg baru, jd skrg tailnya adalah node yg baru-vara
 			baru.setPrev(tail);
 			tail.setNext(baru);
-			tail=baru; //jd skrg tailnya adalah node yg baru-vara
+			tail=baru; 
 		}
 	}
-	public void deleteHead() { //hapus head- vara
-		if (head == null) { //kalau headnya kosong
-			System.out.println("Data kosong"); //nanti bakal ke cetak "Data kosong
+	public void deleteHead() { //hapus head, kalau headnya kosong, nanti bakal ke cetak "Data kosong"- vara
+		if (head == null) { 
+			System.out.println("Data kosong"); 
 		}
-		else {  //kalau headnya ga kosong
-			Node hapus = head; //headnya dimasukin ke hapus
-			head = head.getNext(); //headnya jadi node yg setelah head
-			head.setPrev(null); // sambungannya antara head yg sblmny di putusin
-			hapus = null; // krn head yg sblmnya dah masuk di hapus, lalu kita jdiin null biar ilang
+		else {  //kalau headnya ga kosong, headnya dimasukin ke hapus, headnya jadi node yg setelah head, sambungannya antara head yg sblmny di putusin, krn head yg sblmnya dah masuk di hapus, lalu kita jdiin null biar ilang
+			Node hapus = head; 
+			head = head.getNext(); 
+			head.setPrev(null); 
+			hapus = null; 
 		}
 	}
 	/*
@@ -113,15 +113,15 @@ public class Playlist {
 		System.out.println("Node yang ingin dihapus dengan nama '" + judulLagu + "' tidak ditemukan");
 	}	
 		
-	public void deleteTail() { //hapus tail- vara
-		if (tail == null) { //jika tailnya kosong nanti ke cetak "data kososng"
+	public void deleteTail() { //hapus tail, jika tailnya kosong nanti ke cetak "data kososng"- vara
+		if (tail == null) {
 			System.out.println("data kosong");
 		}
 		else {
-			Node hapus = tail; //tail dimasukin ke hapus dulu (tail jd hapus)
-			tail = tail.getPrev(); // tailnya udh pindah ke data sblm tail(krn di get prev)
-			tail.setNext(null); //sambungan antara data sblm tail(hapus) dgn  di putus
-			hapus = null; // krn tail yg sblmnya dah masuk di hapus(tail jd hapus), lalu hapus kita jdiin null biar ilang
+			Node hapus = tail; //tail dimasukin ke hapus dulu (tail jd hapus), tailnya udh pindah ke data sblm tail(krn di get prev), sambungan antara data sblm tail(hapus) dgn  di putus, krn tail yg sblmnya dah masuk di hapus(tail jd hapus), lalu hapus kita jdiin null biar ilang
+			tail = tail.getPrev(); 
+			tail.setNext(null); 
+			hapus = null; 
 		}
 	}
 
@@ -450,24 +450,24 @@ public class Playlist {
 	public void cetaklist(){ // cetak dari head (vara)
 	        Node temp = head; //tempny di mulai dr head
 	        System.out.println("HEADNYA:"); 
-	        head.cetak(); //cetak head
+	        head.cetak();
 	        System.out.println("TAILNYA:"); 
-	        tail.cetak(); //cetak tail
+	        tail.cetak(); 
 	        System.out.println("\n");
-	        while(temp != null){  //kalau node tempnya ga kosong
-	            temp.cetak(); //bakal cetak temp yg dr head
-	            temp = temp.getNext(); //temp nya bakal berubah jd node yg setelah temp/temp selanjutnya
+	        while(temp != null){  //kalau node tempnya ga kosong, bakal cetak temp yg dr head, temp nya bakal berubah jd node yg setelah temp atau temp selanjutnya 
+	            temp.cetak(); 
+	            temp = temp.getNext(); 
 		}
 	}
-	public void cetaklist_akhir(){ // Cetak dari tail (vara)
+	public void cetaklist_akhir(){ // Cetak dari tail, kalau node tempnya ga kosong, bakal cetak temp yg dr tail, temp nya bakal berubah jd temp yg sblm temp yg skrg (vara)
 	        Node temp = tail;
 	        System.out.println("HEADNYA:"); 
-	        head.cetak(); //cetak head
+	        head.cetak(); 
 	        System.out.println("TAILNYA:"); 
-	        tail.cetak(); //cetak tail
-	        while(temp != null){ //kalau node tempnya ga kosong
-	            temp.cetak(); //bakal cetak temp yg dr tail
-	            temp = temp.getPrev(); //temp nya bakal berubah jd temp yg sblm temp yg skrg
+	        tail.cetak(); 
+	        while(temp != null){ 
+	            temp.cetak(); 
+	            temp = temp.getPrev(); 
 	        }
 	}
 }
